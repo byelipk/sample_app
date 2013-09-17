@@ -17,6 +17,13 @@ group :development do
   gem 'annotate', '2.5.0'
 end
 
+group :development do
+   gem 'better_errors'
+   gem 'binding_of_caller'
+   gem 'meta_request'
+   gem 'debugger'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
