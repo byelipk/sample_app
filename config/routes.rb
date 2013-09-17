@@ -1,11 +1,12 @@
 SampleApp::Application.routes.draw do
   root to: "static_pages#home"
 
+  resources :users
+
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
-
-  match '/signup', to: 'users#new'
+  match '/signup',  to: 'users#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -65,9 +66,16 @@ SampleApp::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
 end
 #== Route Map
-# Generated on 17 Sep 2013 02:19
+# Generated on 17 Sep 2013 04:32
 #
-#    help  /help(.:format)    static_pages#help
-#   about  /about(.:format)   static_pages#about
-# contact  /contact(.:format) static_pages#contact
-#  signup  /signup(.:format)  users#new
+#     users GET    /users(.:format)          users#index
+#           POST   /users(.:format)          users#create
+#  new_user GET    /users/new(.:format)      users#new
+# edit_user GET    /users/:id/edit(.:format) users#edit
+#      user GET    /users/:id(.:format)      users#show
+#           PUT    /users/:id(.:format)      users#update
+#           DELETE /users/:id(.:format)      users#destroy
+#      help        /help(.:format)           static_pages#help
+#     about        /about(.:format)          static_pages#about
+#   contact        /contact(.:format)        static_pages#contact
+#    signup        /signup(.:format)         users#new
