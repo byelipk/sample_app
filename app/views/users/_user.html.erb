@@ -1,7 +1,6 @@
 <div class="well">
 	<h3>Kso Convo</h3>
 	<li>
-	<%= current_user.admin = true %>
 		<%= gravatar_for user, size: 52 %>
 		<%= link_to user.name, user  %>
 		<% if @current_user.admin? && !current_user?(user) %>

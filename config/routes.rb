@@ -3,6 +3,7 @@ SampleApp::Application.routes.draw do
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :microposts, only: [:create, :destroy]
 
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
@@ -70,7 +71,7 @@ SampleApp::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
 end
 #== Route Map
-# Generated on 18 Sep 2013 22:26
+# Generated on 19 Sep 2013 22:44
 #
 #       users GET    /users(.:format)          users#index
 #             POST   /users(.:format)          users#create
@@ -82,9 +83,11 @@ end
 #    sessions POST   /sessions(.:format)       sessions#create
 # new_session GET    /sessions/new(.:format)   sessions#new
 #     session DELETE /sessions/:id(.:format)   sessions#destroy
+#  microposts POST   /microposts(.:format)     microposts#create
+#   micropost DELETE /microposts/:id(.:format) microposts#destroy
 #        help        /help(.:format)           static_pages#help
 #       about        /about(.:format)          static_pages#about
 #     contact        /contact(.:format)        static_pages#contact
 #      signup GET    /signup(.:format)         users#new
-#      signin GET    /signin(.:format)         sessions#create
+#      signin GET    /signin(.:format)         sessions#new
 #     signout DELETE /signout(.:format)        sessions#destroy

@@ -8,5 +8,22 @@
 			</h1>
 		</section>
 	</aside>
+	<section class="span8">
+		<% if @user.microposts.any? %>
+			<h3>Recent Ramblings ( <%= @user.microposts.count %> )</h3>	
+				<ol class="microposts">
+					<%= render @microposts %>
+				</ol>
+			<%= will_paginate @microposts %>
+		<% elsif @user == current_user %>
+			<ol>
+				<li>Search for your friends, classmates, professors, employers, colleagues, and anyone else who can add a little sugar to your experience, or some spice!</li>
+				<li>Join and create conversations.</li>
+				<li>Collaborate together on homework and projects, or just get together to talk about the issues that matter to you.</li>
+			</ol>
+		<% else %>
+			<%= "Add #{@user.name} to your team!" %>
+		<% end %>
+	</section>
 </div>
 
