@@ -15,8 +15,6 @@ $(document).ready(function() {
 	}
 
 	$('#micropost_content').keyup(function() {
-		element = document.getElementById('micropost_content')
-		console.log(element);
 		updateCountdown();
 		$('#micropost_content').change(updateCountdown);
   		$('#micropost_content').keyup(updateCountdown);
