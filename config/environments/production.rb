@@ -48,15 +48,15 @@ SampleApp::Application.configure do
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
 
-  config.action_mailer.default_url_options = { :host => 'sheltered-reaches-8554.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'http://sheltered-reaches-8554.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
-    domain: "sheltered-reaches-8554.herokuapp.com",
+    domain: "http://sheltered-reaches-8554.herokuapp.com",
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: ENV["GMAIL_USERNAME"],
