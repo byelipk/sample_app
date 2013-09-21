@@ -38,13 +38,22 @@ class UsersController < ApplicationController
     if signed_in?
       redirect_to @current_user
     end
+    
+    white_list = [ ENV["TESTER_1"], ENV["TESTER_2"], ENV["TESTER_3"] ]
+
   	@user = User.new(params[:user])
-  	if @user.save
-      sign_in @user
-  		flash[:success] = "Welcome to Kshizzy!"
-  		redirect_to @user
+    if white_list.include?(@user.email)
+  	 if @user.save
+        # Send authentication email
+        RegistrationNotification.welcome_email(@user).deliver
+        redirect_to signin_url
+        
+        #sign_in @user
+  		  #flash[:success] = "Welcome to Kshizzy!"
+  		  #redirect_to @user
+      end
   	else
-  		render 'new'
+  		redirect_to about_url
   	end
   end
 
