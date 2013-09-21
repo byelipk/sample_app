@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   		  #redirect_to @user
       end
   	else
-  		redirect_to about_url
+  		redirect_to root_url
   	end
   end
 
