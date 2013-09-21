@@ -7,8 +7,14 @@
 				<%= @user.name %>
 			</h1>
 		</section>
+		<section>
+			<%= render 'shared/stats' %>
+		</section>
 	</aside>
+
 	<section class="span8">
+		<%= render 'follow_form' if signed_in? %>
+		
 		<% if @user.microposts.any? %>
 			<h3>Recent Ramblings ( <%= @user.microposts.count %> )</h3>	
 				<ol class="microposts">
@@ -24,6 +30,7 @@
 		<% else %>
 			<%= "Add #{@user.name} to your team!" %>
 		<% end %>
+
 	</section>
 </div>
 

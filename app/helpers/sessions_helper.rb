@@ -15,7 +15,7 @@ module SessionsHelper
   def signed_in_user
     unless signed_in?
       store_location
-      redirect_to signin_url, notice: "Please log in to access this content."        
+      redirect_to signin_url, notice: "Please log in."        
     end
   end
 
