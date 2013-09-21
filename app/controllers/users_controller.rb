@@ -46,11 +46,10 @@ class UsersController < ApplicationController
   	 if @user.save
         # Send authentication email
         RegistrationNotification.welcome_email(@user).deliver
-        redirect_to signin_url
-        
-        #sign_in @user
-  		  #flash[:success] = "Welcome to Kshizzy!"
-  		  #redirect_to @user
+        session[:email] = @user.email
+        redirect_to action: :verify
+      else
+        redirect_to help_url
       end
   	else
   		redirect_to root_url
@@ -59,6 +58,11 @@ class UsersController < ApplicationController
 
   def edit 
     #@user = User.find(params[:id]) -- @user defined in before_filter
+  end
+
+  def verify
+    @email = session[:email]
+    reset_session
   end
 
   def update

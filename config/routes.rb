@@ -13,9 +13,11 @@ SampleApp::Application.routes.draw do
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
+  match '/verify',  to: 'users#verify',      via: 'get'
   match '/signup',  to: 'users#new',         via: 'get'
   match '/signin',  to: 'sessions#new',      via: 'get'
   match '/signout', to: 'sessions#destroy',  via: 'delete'
+
 
 
   # The priority is based upon order of creation:
@@ -76,7 +78,7 @@ SampleApp::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
 end
 #== Route Map
-# Generated on 20 Sep 2013 07:02
+# Generated on 21 Sep 2013 12:09
 #
 # following_user GET    /users/:id/following(.:format) users#following
 # followers_user GET    /users/:id/followers(.:format) users#followers
