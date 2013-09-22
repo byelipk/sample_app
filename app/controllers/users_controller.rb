@@ -62,9 +62,9 @@ class UsersController < ApplicationController
       redirect_to root_url
     else
       user = verification.user
-      self.current_user = user
-      flash[:success] = "Email verified. Your profile is active!"
-      redirect_to user
+      sign_in(user)
+      flash[:success] = "Your profile is active!"
+      redirect_to root_url
     end
   end
 
