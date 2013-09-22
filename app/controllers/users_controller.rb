@@ -56,7 +56,16 @@ class UsersController < ApplicationController
   end
 
   def verify_email
-    raise
+    verification = EmailVerification.find_by_code(params[:id])
+    if verification.nil?
+      flash[:error] = "Invalid email verification code"
+      redirect_to root_url
+    else
+      user = verification.user
+      self.current_user = user
+      flash[:success] = "Email verified. Your profile is active!"
+      redirect_to user
+    end
   end
 
   def edit 
