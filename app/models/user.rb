@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
 
     # -- Simple, many-to-one association set-up & instance methods
     has_many :microposts, dependent: :destroy
+    has_many :email_verifications, dependent: :destroy
 
     # -- Complex, many-to-many association set-up & instance methods
     has_many :relationships, foreign_key: "follower_id", dependent: :destroy

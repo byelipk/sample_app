@@ -39,28 +39,31 @@ class UsersController < ApplicationController
       redirect_to @current_user
     end
     
-    white_list = [ ENV["TESTER_1"], ENV["TESTER_2"], ENV["TESTER_3"] ]
-
+    whitelist = [ ENV["TESTER_1"], ENV["TESTER_2"], ENV["TESTER_3"] ]
   	@user = User.new(params[:user])
-    if white_list.include?(@user.email)
-  	 if @user.save
-        # Send authentication email
-        RegistrationNotification.welcome_email(@user).deliver
+    if whitelist.include?(@user.email)
+  	  if @user.save
+        # Send verification email
+        @user.email_verifications.create!
         session[:email] = @user.email
-        redirect_to action: :verify
+        redirect_to action: :thanks
       else
-        redirect_to help_url
+        redirect_to about_url
       end
   	else
   		redirect_to root_url
   	end
   end
 
+  def verify_email
+    raise
+  end
+
   def edit 
     #@user = User.find(params[:id]) -- @user defined in before_filter
   end
 
-  def verify
+  def thanks
     @email = session[:email]
     reset_session
   end
