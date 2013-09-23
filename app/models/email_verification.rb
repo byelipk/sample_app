@@ -24,7 +24,7 @@ class EmailVerification < ActiveRecord::Base
 	private
 	  	
 	  	def make_code
-	  		self.code = SecureRandom.urlsafe_base64(20)
+	  		self.code = SecureRandom.urlsafe_base64(22)
 	  	end
 
 	  	def send_verification_email

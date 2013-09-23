@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
-  before_filter :signed_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
+  before_filter :signed_in_user, only: [:index, :edit, :update, 
+                                        :destroy, :following, :followers,
+                                        :activate, :thanks]
   before_filter :correct_user, only: [:edit, :update]
   before_filter :admin_user, only: :destroy
 
@@ -38,47 +40,85 @@ class UsersController < ApplicationController
     if signed_in?
       redirect_to @current_user
     end
-    
+
     whitelist = [ ENV["TESTER_1"], ENV["TESTER_2"], ENV["TESTER_3"] ]
-  	@user = User.new(params[:user])
+
+    @user = User.new(params[:user])
     if whitelist.include?(@user.email)
-  	  if @user.save
+      if @user.save
         # Send verification email
         @user.email_verifications.create!
         session[:email] = @user.email
         redirect_to action: :thanks
       else
-        redirect_to about_url
+        render 'new'
       end
-  	else
-  		redirect_to root_url
-  	end
-  end
-
-  def verify_email
-    verification = EmailVerification.find_by_code(params[:id])
-    if verification.nil?
-      flash[:error] = "Invalid email verification code"
-      redirect_to root_url
     else
-      user = verification.user
-      sign_in(user)
-      flash[:success] = "Your profile is active!"
+      flash[:error] = "Access is closed at this time. Thanks!"
       redirect_to root_url
     end
   end
 
-  def edit 
-    #@user = User.find(params[:id]) -- @user defined in before_filter
-  end
-
   def thanks
+    # Direct user to their email to finalize sign-up
+    if session[:email].nil?
+      redirect_to signup_url
+    end
     @email = session[:email]
     reset_session
   end
 
+  def verify_email
+    # User clicked on link sent to their email address
+    verification = EmailVerification.find_by_code(params[:id])
+    if verification.nil?
+      # activation codes do not match
+      redirect_to root_url
+    elsif !verification.active_link?
+      # activation code "expired"
+      redirect_to root_url
+    else
+      # activation code confirmed, activate user, sign-in user
+      user = verification.user
+      activate_user(user)
+      verification.active_link = false; verification.save!;
+      sign_in(user)
+      flash[:success] = "Welcome!"
+      redirect_to root_url
+    end
+  end
+
+  def activate
+    # to send a new activation link
+    if session[:lock].nil?
+      redirect_to signup_url
+    else
+      @user = User.new
+      reset_session
+    end
+  end
+
+  def resend
+    # user filled out request to send new activation link
+    @user = User.find_by_email(params[:user][:email])
+
+    if @user.nil?
+      redirect_to signup_url
+    else
+      e = @user.email_verifications.pop
+      e.active_link = false; e.save! 
+      @user.email_verifications.create!
+      session[:email] = @user.email
+      redirect_to action: :thanks
+    end
+  end
+
+  def edit 
+    # -- @user defined in before_filter
+  end
+
   def update
-    #@user = User.find(params[:id]) -- @user defined in before_filter
+    # -- @user defined in before_filter
     if @user.update_attributes(params[:user])
       flash.now[:success] = "Changes to your profile have been saved!"
       sign_in @user

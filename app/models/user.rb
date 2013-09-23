@@ -10,6 +10,8 @@
 #  password_digest :string(255)
 #  remember_token  :string(255)
 #  admin           :boolean          default(FALSE)
+#  active          :boolean          default(FALSE)
+#  verified_email  :boolean          default(FALSE)
 #
 
 class User < ActiveRecord::Base
@@ -65,7 +67,7 @@ class User < ActiveRecord::Base
   def unfollow!(other_user)
     self.relationships.find_by_followed_id(other_user.id).destroy
   end
-
+  
   # -- Private methods
 
   private

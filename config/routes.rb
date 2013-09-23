@@ -3,7 +3,7 @@ SampleApp::Application.routes.draw do
 
   resources :users do
     member do
-      get :following, :followers, :verify_email
+      get :following, :followers
     end
   end
   resources :sessions, only: [:new, :create, :destroy]
@@ -15,10 +15,14 @@ SampleApp::Application.routes.draw do
   match '/help',      to: 'static_pages#help'
   match '/about',     to: 'static_pages#about'
   match '/contact',   to: 'static_pages#contact'
-  match '/thanks',    to: 'users#thanks',      via: 'get'
+  
   match '/signup',    to: 'users#new',         via: 'get'
   match '/signin',    to: 'sessions#new',      via: 'get'
   match '/signout',   to: 'sessions#destroy',  via: 'delete'
+
+  match '/thanks',    to: 'users#thanks',      via: 'get'
+  match '/activate',  to: 'users#activate',    via: 'get'
+  match '/resend',    to: 'users#resend',      via: 'post'
 
 
 
@@ -80,30 +84,31 @@ SampleApp::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
 end
 #== Route Map
-# Generated on 22 Sep 2013 02:20
+# Generated on 23 Sep 2013 10:09
 #
-#    following_user GET    /users/:id/following(.:format)    users#following
-#    followers_user GET    /users/:id/followers(.:format)    users#followers
-# verify_email_user GET    /users/:id/verify_email(.:format) users#verify_email
-#             users GET    /users(.:format)                  users#index
-#                   POST   /users(.:format)                  users#create
-#          new_user GET    /users/new(.:format)              users#new
-#         edit_user GET    /users/:id/edit(.:format)         users#edit
-#              user GET    /users/:id(.:format)              users#show
-#                   PUT    /users/:id(.:format)              users#update
-#                   DELETE /users/:id(.:format)              users#destroy
-#          sessions POST   /sessions(.:format)               sessions#create
-#       new_session GET    /sessions/new(.:format)           sessions#new
-#           session DELETE /sessions/:id(.:format)           sessions#destroy
-#        microposts POST   /microposts(.:format)             microposts#create
-#         micropost DELETE /microposts/:id(.:format)         microposts#destroy
-#     relationships POST   /relationships(.:format)          relationships#create
-#      relationship DELETE /relationships/:id(.:format)      relationships#destroy
-#                          /users/verify/:id(.:format)       users#verify_email
-#              help        /help(.:format)                   static_pages#help
-#             about        /about(.:format)                  static_pages#about
-#           contact        /contact(.:format)                static_pages#contact
-#            thanks GET    /thanks(.:format)                 users#thanks
-#            signup GET    /signup(.:format)                 users#new
-#            signin GET    /signin(.:format)                 sessions#new
-#           signout DELETE /signout(.:format)                sessions#destroy
+# following_user GET    /users/:id/following(.:format) users#following
+# followers_user GET    /users/:id/followers(.:format) users#followers
+#          users GET    /users(.:format)               users#index
+#                POST   /users(.:format)               users#create
+#       new_user GET    /users/new(.:format)           users#new
+#      edit_user GET    /users/:id/edit(.:format)      users#edit
+#           user GET    /users/:id(.:format)           users#show
+#                PUT    /users/:id(.:format)           users#update
+#                DELETE /users/:id(.:format)           users#destroy
+#       sessions POST   /sessions(.:format)            sessions#create
+#    new_session GET    /sessions/new(.:format)        sessions#new
+#        session DELETE /sessions/:id(.:format)        sessions#destroy
+#     microposts POST   /microposts(.:format)          microposts#create
+#      micropost DELETE /microposts/:id(.:format)      microposts#destroy
+#  relationships POST   /relationships(.:format)       relationships#create
+#   relationship DELETE /relationships/:id(.:format)   relationships#destroy
+#                       /users/verify/:id(.:format)    users#verify_email
+#           help        /help(.:format)                static_pages#help
+#          about        /about(.:format)               static_pages#about
+#        contact        /contact(.:format)             static_pages#contact
+#         signup GET    /signup(.:format)              users#new
+#         signin GET    /signin(.:format)              sessions#new
+#        signout DELETE /signout(.:format)             sessions#destroy
+#         thanks GET    /thanks(.:format)              users#thanks
+#       activate GET    /activate(.:format)            users#activate
+#         resend POST   /resend(.:format)              users#resend

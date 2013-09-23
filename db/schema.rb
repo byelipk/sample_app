@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130922025004) do
+ActiveRecord::Schema.define(:version => 20130923051729) do
 
   create_table "email_verifications", :force => true do |t|
     t.integer  "user_id"
     t.string   "code"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "active_link", :default => true
   end
 
   add_index "email_verifications", ["code"], :name => "index_email_verifications_on_code"
@@ -50,6 +51,8 @@ ActiveRecord::Schema.define(:version => 20130922025004) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin",           :default => false
+    t.boolean  "active",          :default => false
+    t.boolean  "verified_email",  :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -4,12 +4,14 @@ module SessionsHelper
   # RETURN VALUE: Stores a cookie for user authentication, 
   # -- and instantiates @current_user
   def sign_in(user)
-  	# Store user's remember token in a cookie; valid for 20 years
-    cookies.permanent[:remember_token] = user.remember_token
-    
-    # Assign 'user' as the current session user
-    # This syntax invokes current_user=(), thereby setting @current_user
-    self.current_user = user
+    # Check if user account has been activated
+    if activated?(user)
+      cookies.permanent[:remember_token] = user.remember_token
+      # This syntax invokes current_user=(), thereby setting @current_user automagically :)
+      self.current_user = user
+    else
+      # Unactivated account
+    end
   end
 
   def signed_in_user
@@ -61,4 +63,19 @@ module SessionsHelper
   def store_location
     session[:return_to] = request.url
   end
+
+  def activate_user(user)
+    user.active = true
+    user.verified_email = true
+    user.save(validate: false)
+  end
+
+  def activated?(user)
+    user.active != false
+  end
+
+  def registered?(user)
+    
+  end
+
 end
