@@ -1,0 +1,37 @@
+<div class="providers">
+	<h3 class=" regular-header login-button-header">Log into Kshizzy with</h3>
+	<a id="login-google" href="#" class="action gradient large-button">
+		<div class="img-container">
+			<img  width="180" height="61" src="https://khan-academy.appspot.com/images/google-logo-large.png" alt="Google">
+		</div>
+	</a>
+
+	<a id="login-facebook" href="#" class="action gradient large-button">
+		<div class="img-container">
+			<img width="180" height="61" src="https://khan-academy.appspot.com/images/facebook-logo-large.png" alt="Facebook">
+		</div>
+	</a>
+</div>
+
+<div class="vertical-separator">
+	<span class="separator-text">Or</span>
+</div>
+
+<div class="pw-login">
+	<h3 class="regular-header" >Log in with your Kshizzy account</h3>
+	<div class="row">
+		<div class="span4 pull-right">
+			<%= form_tag sessions_path, class: "form-horizontal", id:"login" do %>
+				<%= text_field_tag :email, nil, placeholder: "Email" %>
+				<%= password_field_tag :password, nil, placeholder: "Password" %>
+				<%= submit_tag "Sign in", class: "btn btn-large btn-success pull-right" %>
+			<% end %>
+			<small style="margin-right: 30px;">
+				<%= link_to "Forgot password?", '#' %>
+			</small>
+			<small>
+				New user? <%= link_to "Sign up!" , signup_path %>
+			</small>		
+		</div>
+	</div>
+</div>

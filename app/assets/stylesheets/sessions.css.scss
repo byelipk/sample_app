@@ -1,3 +1,169 @@
 // Place all the styles related to the Sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* Bootstrapped Bootstrap */
+
+
+
+.well-login-container{
+	margin: 80px auto;
+	padding: 20px;
+}
+
+.well-login-container .card-case {
+    margin-bottom: 0;
+    white-space: nowrap;
+}
+
+.well-login-container, .well-login-container .card-case {
+    width: 726px;
+}
+
+.card-case {
+	background: none repeat scroll 0 0 #EEEEEE;
+	padding: 20px;
+	border-radius: 5px 5px 5px 5px;
+}
+
+.well-login-container .providers {
+	text-align: center;
+}
+
+.providers {
+	display: inline-block;
+	height: 250px;
+	vertical-align: top;
+	margin-right: 10px;
+}
+
+.providers a:hover {
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    transform: scale(1.05);
+}
+
+.vertical-shadow {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #CCCCCC #CCCCCC #AAAAAA;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 3px #CCCCCC;
+}
+
+.large-button {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #CCCCCC #BBBBBB #AAAAAA #CCCCCC;
+    border-image: none;
+    border-radius: 5px 5px 5px 5px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 1px 1px 3px #CCCCCC;
+    cursor: pointer;
+    display: table;
+    height: 80px;
+    left: 1px;
+    margin: 5px 0;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    top: 1px;
+    width: 200px;
+}
+
+.regular-header {
+    color: #444444;
+    font-family: "MuseoSans300",sans-serif;
+    font-size: 18px;
+    margin-bottom: 22px;
+}
+
+.login-button-header {
+    max-width: 245px;
+    text-align: left;
+    white-space: normal;
+}
+
+.img-container {
+	height: 60px;
+    margin-top: 10px;
+}
+
+.action-gradient {
+    background-color: #F3F3F3;
+    background-image: linear-gradient(to bottom, #F7F7F7, #EEEEEE);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color: #FFFFFF;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+
+.vertical-separator {
+    border-left: 1px solid #CCCCCC;
+    display: inline-block;
+    height: 250px;
+    margin: 0 2em;
+    position: relative;
+    text-align: center;
+    width: 1px;
+}
+
+.vertical-separator .separator-text {
+    margin-left: -2.2em;
+    margin-top: -0.5em;
+    top: 50%;
+    width: 3em;
+}
+
+.separator-text {
+    background: none repeat scroll 0 0 #EEEEEE;
+    color: #444444;
+    display: inline-block;
+    font-family: "MuseoSans300",sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    padding: 0.7em;
+    position: relative;
+    text-transform: uppercase;
+}
+
+.pw-login {
+    width: 430px;
+}
+
+.providers, .pw-login {
+    display: inline-block;
+    height: 250px;
+    vertical-align: top;
+    white-space: normal;
+}
+
+.pw-login h3 {
+    margin-bottom: 2em;
+    text-align: left;
+}
+
+.pw-login small {
+	font-size: 12px;
+	margin-top: 10px;
+}
+
+#login input[type=text], #login input[type=password] {
+	margin-bottom: 20px;
+	padding: 3% 2%;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+#login input[type=password] {
+	width: 70%;
+}

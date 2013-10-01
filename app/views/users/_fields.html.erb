@@ -1,13 +1,13 @@
 <%# We render this by explicity passing in f: render 'fields', f: f %>
 
-<%= f.label :name %>
-<%= f.text_field :name %>
+<%#= f.label :name %>
+<%= f.text_field :name, placeholder: "Tell us your first and last name" %>
 
-<%= f.label :email %>
-<%= f.text_field :email %>
+<%#= f.label :email %>
+<%= f.text_field :email, placeholder: "Tell us your email address" %>
 
-<%= f.label :password %>
-<%= f.password_field :password %>
+<%#= f.label :password %>
+<%= f.password_field :password, placeholder: "Select a password at least 6 characters long" %>
 
-<%= f.label :password_confirmation, "Confirm password" %>
-<%= f.password_field :password_confirmation %>
+<%#= f.label :password_confirmation, "Confirm password" %>
+<%= f.password_field :password_confirmation, placeholder: "Confirm your password" %>

@@ -1,15 +1,14 @@
 <% provide(:title, 'Account Activation') %>
 <h3>Activate your account</h3>
-<p>Please use the activation link sent to your email, or enter your email below and a new link will be sent to you.</p>
+<p>To activate your account and take full advantage of Kshizzy's features, please use the activation link sent to your email. To request a new activation link, enter your email below.</p>
 
 <div class="row">
 	<div class="span4">
 		<%= form_for @user, url: {action: "resend"}  do |f| %>
 			
-			<%= f.label :email %>
-			<%= f.text_field :email %>
+			<%= f.text_field :email, placeholder: "Email" %>
 
-			<%= f.submit "Send", class: "btn btn-large btn-primary" %>
+			<%= f.submit "Send", class: "btn btn-primary" %>
 		<% end %>
 	</div>
 </div>

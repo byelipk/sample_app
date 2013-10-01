@@ -1,3 +1,53 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.homepage_signin_signup {
+	background-color: #8E4C9B;
+	position: relative;
+	top: -20px;
+	margin-bottom: -20px;
+}
+
+.welcome {
+  float: left;
+  position: relative;
+  top: 30px;
+}
+
+.fakebottom {
+	text-align: center;
+	background-color: #2C3747;
+}
+
+.fakebottom-row {
+	width: 100%;
+	padding: 30px 0;
+}
+
+.fakebottom-item {
+	color: #FFFFFF;
+	margin-right: 40px;
+	font-size: 16px;
+	padding: 32px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	text-transform: uppercase;
+	&:hover {
+	color: #FFFFFF;
+	text-decoration: none;
+	background-color: #36515E;
+	}
+}
+
+h2 {
+	color: #eeeeee;
+}
+
+/* Bootstrapped Bootstrap */
+
+.hero-unit-homepage {
+	margin: 40px auto;
+	width: 50%;
+	background-color: #8E4C9B;
+}

@@ -28,7 +28,8 @@ module SessionsHelper
   end 
 
   # ARGS: none
-  # RETURN VALUE: Boolean
+  # RETURN VALUE: Boolean check to see if there is a current user,
+  # -- also instantiates @current_user and sets it to nil
   def signed_in?
     !current_user.nil?
   end  
@@ -74,8 +75,8 @@ module SessionsHelper
     user.active != false
   end
 
-  def registered?(user)
+  # def registered?(user)
     
-  end
+  # end
 
 end

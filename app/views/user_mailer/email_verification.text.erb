@@ -1,8 +1,15 @@
-Welcome to Kshizzy, <%= @user.name %>
+<%= @user.name %>,
 ===============================================
+Please confirm your Kshizzy account.
+
+Confirming your account will give you full access to Kshizzy 
+and all future notifications will be sent to this email address.
  
-You have successfully signed up to Kshizzy! And the Redsox won the division! Mmmm... Beer showers!
+To confirm your account, just click this <%= link_to "link", @url %>.
+
+
+
+Forgot your Kshizzy password? <%= link_to "Get instructions on how to reset it.", '#' %>
+
+If you received this message in error and did not sign up for Kshizzy, click <%= link_to "not my account.", '#' %>
  
-To login to the site, just follow this <%= link_to "link", @url %>.
- 
-Thanks for joining and have a great day!

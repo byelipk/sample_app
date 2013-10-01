@@ -3,18 +3,28 @@
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
-  <body>
-    <h1>Welcome to Kshizzy, <%= @user.name %></h1>
-    
-    <p>
-      You have successfully signed up to Kshizzy! And the Redsox won the division! Mmmm... Beer showers!
-    </p>
-    
-    <p>
-      To login to the site, just follow this <%= link_to "link", @url %>.
-    </p>
-    
-    <p>Thanks for joining and have a great day!</p>
+  <body style="background-color: #FF0DFF;">
+    <header>
+      <h1><%= @user.name %>,</h1>
+    </header>
 
+    <h3>Please confirm your Kshizzy account.</h3>
+    
+    <p>
+      Confirming your account will give you full access to Kshizzy<br> and all future notifications will be sent to this email address.
+    </p>
+    
+    <p>
+      To confirm your account, just click this <%= link_to "link", @url %>.
+    </p>
+
+    <footer>
+      <small>
+        Forgot your Kshizzy password? <%= link_to "Get instructions on how to reset it.", '#' %>
+      </small><br>
+      <small>
+        If you received this message in error and did not sign up for Kshizzy, click <%= link_to "not my account.", '#' %>
+      </small>
+    </footer>
   </body>
 </html>
