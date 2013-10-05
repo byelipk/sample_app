@@ -19,12 +19,12 @@
 
 <div class="pw-login">
 	<h3 class="regular-header" >Log in with your Kshizzy account</h3>
-	<div class="row">
-		<div class="span4 pull-right">
-			<%= form_tag sessions_path, class: "form-horizontal", id:"login" do %>
+	<div class="row-fluid">
+		<div class="offset3">
+			<%= form_tag sessions_path, id:"login" do %>
 				<%= text_field_tag :email, nil, placeholder: "Email" %>
 				<%= password_field_tag :password, nil, placeholder: "Password" %>
-				<%= submit_tag "Sign in", class: "btn btn-large btn-success pull-right" %>
+				<%= submit_tag "Sign in", class: "btn btn-large btn-success", style: "float:right" %>
 			<% end %>
 			<small style="margin-right: 30px;">
 				<%= link_to "Forgot password?", '#' %>
