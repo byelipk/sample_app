@@ -95,12 +95,18 @@
 }
 
 @media screen and (max-width: 1018px) {
-	.fakebottom-item {
+	.signin-form, .signup-form, .fakebottom-item, #signin {
 		display: none;
 	}
 
-	.signin-form, .signup-form {
-		display: none;
+	.welcome {
+		right: 0;
+		width: 100%;
+	}
+
+	#logo {
+		width: 100%;
+		text-align: center;
 	}
 }
 
@@ -108,6 +114,8 @@
 /* Bootstrapped Bootstrap */
 
 .hero-unit-homepage {
+	position: relative;
+	top: 4em;
 	margin: 4em auto;
 	width: 60%;	
 	height: 27.7em;
@@ -122,18 +130,13 @@
 	}
 }
 
-.hero-unit-homepage {
-	padding-top: 60px;
-}
-
 @media screen and (max-width: 980px) {
 	.hero-unit-homepage {
 		padding-top: 0px;
 	}
 
-	.welcome {
-		position: inherit;
-		float: none;
+	.navbar-fixed-top .navbar-inner, .navbar-fixed-bottom .navbar-inner {
+    padding: 0;
 	}
 }
 
@@ -145,5 +148,10 @@
 }
 
 .navbar-fixed-top {
+	position: fixed;
 	box-shadow: 0.5px 0.5px 5px #000000;
+}
+
+.navbar-inverse .navbar-inner {
+    background-image: linear-gradient(to bottom, #444444, #111111);
 }
