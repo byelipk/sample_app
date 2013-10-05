@@ -1,4 +1,7 @@
 @import 'bootstrap';
+@import "bootstrap-responsive";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+
 /* mixins, variables, etc. */
 
 /* #eaeaea: #eaeaea; */
@@ -16,7 +19,7 @@ html {
 }
 
 body {
-  padding-top: 60px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 section {
@@ -79,6 +82,7 @@ p {
     text-decoration: none;
   }
 }
+
 
 /* footer */
 
@@ -241,5 +245,13 @@ aside {
   textarea {
     height: 100px;
     margin-bottom: 5px;
+  }
+}
+
+/* Bootstrapped Bootstrap */
+
+@media screen and (max-width: 1325px) {
+  .pull-right {
+    float: none;
   }
 }

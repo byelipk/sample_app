@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     if signed_in?
       redirect_to @current_user
     end
-  	@user = User.new
+  	@user = User.new(params[:user])
   end
 
   def show
@@ -36,10 +36,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    if signed_in?
-      redirect_to @current_user
-    end
-
+    redirect_to @current_user if signed_in?
+   
     whitelist = [ ENV["TESTER_1"], ENV["TESTER_2"], ENV["TESTER_3"] ]
 
     @user = User.new(params[:user])
@@ -47,6 +45,8 @@ class UsersController < ApplicationController
       if @user.save
         # Send verification email
         @user.email_verifications.create!
+        
+        # This is what we were doing...
         session[:email] = @user.email
         redirect_to action: :thanks
       else
@@ -60,9 +60,8 @@ class UsersController < ApplicationController
 
   def thanks
     # Direct user to their email to finalize sign-up
-    if session[:email].nil?
-      redirect_to signup_url
-    end
+    redirect_to signup_url if session[:email].nil?
+ 
     @email = session[:email]
     reset_session
   end
@@ -71,13 +70,10 @@ class UsersController < ApplicationController
     # User clicked on link sent to their email address
     verification = EmailVerification.find_by_code(params[:id])
     if verification.nil?
-      # activation codes do not match
       redirect_to root_url
     elsif !verification.active_link?
-      # activation code "expired"
       redirect_to root_url
     else
-      # activation code confirmed, activate user, sign-in user
       user = verification.user
       activate_user(user)
       verification.active_link = false; verification.save!;

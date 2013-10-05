@@ -1,12 +1,14 @@
-<section class="homepage_signin_signup"> 
-	
-    <div class="center hero-unit hero-unit-homepage">
+<section class="welcome-wrapper"> 
+    <div class="center hero-unit-homepage">
         <% flash.each do |key, value| %>
             <%= content_tag(:div, value, class: "alert alert-#{key}") %>
         <% end %>
-		<%= render 'homepage_welcome_message' %>
-		<%= render 'homepage_signin_form' %>
-		<%= render 'homepage_signup_form' %>
+        <%= render 'homepage_welcome_message' %>
+
+        	<%= render 'homepage_signin_form' %>
+			<%= render 'homepage_signup_form' %>	
+     
+		
 	</div>
 </section>
 

@@ -3,19 +3,20 @@
 # Table name: users
 #
 #  id              :integer          not null, primary key
-#  name            :string(255)
+#  first_name      :string(255)
+#  last_name       :string(255)
 #  email           :string(255)
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
 #  password_digest :string(255)
 #  remember_token  :string(255)
 #  admin           :boolean          default(FALSE)
 #  active          :boolean          default(FALSE)
 #  verified_email  :boolean          default(FALSE)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation
   has_secure_password
 
   # -- Associations
@@ -37,7 +38,8 @@ class User < ActiveRecord::Base
   before_save :create_remember_token
 
   # -- Validations
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :first_name, presence: true, length: { maximum: 50 }
+  validates :last_name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence:   true,
                     format:     { with: VALID_EMAIL_REGEX },
@@ -57,15 +59,16 @@ class User < ActiveRecord::Base
     self.relationships.create!(followed_id: other_user.id)
   end
 
-  # ARGS: User object
-  # RETURN TYPE: Relationship object
-  # RETURN VALUE: It returns an instance of the Relationship class
   def following?(other_user)
     self.relationships.find_by_followed_id(other_user.id)
   end
 
   def unfollow!(other_user)
     self.relationships.find_by_followed_id(other_user.id).destroy
+  end
+
+  def name
+    self.first_name + " " + self.last_name
   end
   
   # -- Private methods

@@ -1,14 +1,11 @@
-<div class="row-fluid">
-	<div class="span5 pull-right well">
-		<h4><strong>New to Kshizzy?</strong> Sign up.</h4>
-		<%= form_for(@user) do |f| %>	
-			<%= f.text_field :name, placeholder: "Name" %>
-
-			<%= f.text_field :email, placeholder: "Email" %>
-
-			<%= f.text_field :password, placeholder: "Password" %>
-
-			<%= f.submit "Sign up for Kshizzy", class: "btn btn-small btn-warning pull-right" %>
-		<% end %>		
-	</div>
+<div class="well signup-form">
+	<h4>New to Kshizzy? Sign up.</h4>
+	<%= form_for(@user, url: signup_path, method: 'get') do |f| %>	
+		<div class="row-fluid">
+			<%= f.text_field :first_name, placeholder: "First Name", class: "span6" %>
+			<%= f.text_field :last_name, placeholder: "Last Name", class: "span6" %>			
+		</div>
+		<%= f.text_field :email, placeholder: "Email" %>
+		<%= f.submit "Sign up for Kshizzy", class: "btn btn-large btn-warning", style: "float:right" %>
+	<% end %>		
 </div>
