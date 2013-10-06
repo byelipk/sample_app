@@ -1,5 +1,5 @@
 <section class="welcome-wrapper"> 
-    <div class="center hero-unit-homepage">
+    <div class="center welcome-container">
         <% flash.each do |key, value| %>
             <%= content_tag(:div, value, class: "alert alert-#{key}") %>
         <% end %>

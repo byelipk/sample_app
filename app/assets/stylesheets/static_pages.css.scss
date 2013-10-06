@@ -7,10 +7,22 @@
 .welcome-wrapper {
 	background-color: #8E4C9B;
 	position: relative;
-	top: -1.4em;
-	margin-bottom: -1.4em;
 	height: 44em;
 	overflow: hidden;
+}
+
+.welcome-container {
+	position: relative;
+	top: 4em;
+	margin: auto;
+	width: 60%;	
+	height: 27.7em;
+	h1 {
+		font-size: 7em;
+	}
+	h2 {
+		font-size: 2.1em;
+	}
 }
 
 .welcome {
@@ -52,12 +64,14 @@
 	text-shadow: 2px 2px 1px rgba(255,255,255,0.6);
 }
 
-/* Fake bottom footer */
+/* Fake footer */
 
 .fakebottom {
 	text-align: center;
 	background-color: #2C3747;
 	overflow: hidden; 
+	position: relative;
+	top: -1.4em;
 }
 
 .fakebottom-row {
@@ -77,6 +91,19 @@
 		background-color: #36515E;
 	}
 }
+
+/* Bootstrapped Bootstrap */
+
+.navbar-fixed-top {
+	position: relative;
+	box-shadow: 0.5px 0.5px 5px #000000;
+}
+
+.navbar-inverse .navbar-inner {
+    background-image: linear-gradient(to bottom, #444444, #111111);
+}
+
+/* Responsive CSS */
 
 @media screen and (max-width: 1215px) {
 	.fakebottom-item {
@@ -108,33 +135,17 @@
 	}
 }
 
-
-/* Bootstrapped Bootstrap */
-
-.hero-unit-homepage {
-	position: relative;
-	top: 4em;
-	margin: 4em auto;
-	width: 60%;	
-	height: 27.7em;
-	h1 {
-		font-size: 7em;
-	}
-	h2 {
-		font-size: 2.1em;
-	}
-	.container {
-		width: 100%;
-	}
-}
-
-@media screen and (max-width: 980px) {
+@media screen and (max-width: 979px) {
 	.hero-unit-homepage {
 		padding-top: 0px;
 	}
 
 	.navbar-fixed-top .navbar-inner, .navbar-fixed-bottom .navbar-inner {
     padding: 0;
+	}
+
+	.welcome-wrapper {
+		top: -1.4em;
 	}
 }
 
@@ -143,13 +154,4 @@
 	body {
 		padding: 0px;
 	}
-}
-
-.navbar-fixed-top {
-	position: relative;
-	box-shadow: 0.5px 0.5px 5px #000000;
-}
-
-.navbar-inverse .navbar-inner {
-    background-image: linear-gradient(to bottom, #444444, #111111);
 }
