@@ -69,6 +69,8 @@ form label {
     box-shadow: 1px 1px 3px #000000;
     &:hover {
     	background: none repeat scroll 0 0 #1D7886;
+    }
+    &:focus {
     	box-shadow: 1px 1px 3px #000000 inset;
     }
 }
