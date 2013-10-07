@@ -84,11 +84,15 @@
 .button {
 	color: #eeeeee;
 	margin: 2em 1em;
-	padding: 1.5em 2em;	
+	padding: 1.5em 4em;	
 	position: relative;
+	-webkit-box-shadow: 1px 1px 3px #000000;
+	-moz-box-shadow: 1px 1px 3px #000000;
 	box-shadow: 1px 1px 3px #000000;
 	&:hover {
 		background-color: #eeeeee;
+		-webkit-box-shadow: 1px 1px 3px #000000 inset;
+		-moz-box-shadow: 1px 1px 3px #000000 inset;
 		box-shadow: 1px 1px 3px #000000 inset;
 	}	
 }
@@ -192,6 +196,11 @@
 	}
 }
 
+@media screen and (max-width: 810px) {
+	.button {
+		display: block;
+	}	
+}
 
 @media screen and (max-width: 767px) {
 	body {
@@ -199,8 +208,19 @@
 	}
 }
 
-@media screen and (max-width: 577px) {
-	.button {
-		display: block;
+@media screen and (max-width: 558px) {
+	.welcome-message h2 {
+		font-size: 1.7em;
 	}	
+}
+
+@media screen and (max-width: 453px) {
+	.welcome-message h1, .welcome-message h2 {
+		display: none;
+	}	
+
+	.welcome-container {
+		top: -4em;
+		width: 100%;
+	}
 }
