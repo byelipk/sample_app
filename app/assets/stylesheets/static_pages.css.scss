@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/* Main colorpslash */
+/* Welcome colorpslash */
 
 .welcome-wrapper {
 	background-color: #8E4C9B;
@@ -10,6 +10,8 @@
 	height: 44em;
 	overflow: hidden;
 }
+
+/* Welcome options */
 
 .welcome-container {
 	position: relative;
@@ -22,10 +24,12 @@
 	}
 	h2 {
 		font-size: 2.1em;
+		margin-top: .75em;
+		margin-bottom: .75em;
 	}
 }
 
-.welcome {
+.welcome-message {
   	float: left;
   	position: relative;
   	top: 2.5em;
@@ -63,6 +67,41 @@
 	padding-bottom: .75em;
 	text-shadow: 2px 2px 1px rgba(255,255,255,0.6);
 }
+
+.buttons {
+    clear: both;
+    display: none;
+    margin: auto;
+    position: relative;
+    top: 5em;
+    width: 80%;
+    height: 8em;
+    a:hover {
+		text-decoration: none;
+	}
+}
+
+.button {
+	color: #eeeeee;
+	margin: 2em 1em;
+	padding: 1.5em 2em;	
+	position: relative;
+	box-shadow: 1px 1px 3px #000000;
+	&:hover {
+		background-color: #eeeeee;
+		box-shadow: 1px 1px 3px #000000 inset;
+	}	
+}
+
+.signin-button {
+	background-color: #185996;
+
+}
+
+.signup-button {
+	background-color: #26A7DA;	
+}
+
 
 /* Fake footer */
 
@@ -123,7 +162,7 @@
 		display: none;
 	}
 
-	.welcome {
+	.welcome-message {
 		right: 0;
 		top: 0;
 		width: 100%;
@@ -132,6 +171,10 @@
 	#logo {
 		width: 100%;
 		text-align: center;
+	}
+
+	.buttons {
+		display: block;
 	}
 }
 
@@ -154,4 +197,10 @@
 	body {
 		padding: 0px;
 	}
+}
+
+@media screen and (max-width: 577px) {
+	.button {
+		display: block;
+	}	
 }
