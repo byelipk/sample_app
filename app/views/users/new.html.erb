@@ -1,10 +1,10 @@
 <% provide(:title, 'Create an Account') %>
-<div class="well-signup-container vertical-shadow">
-	<h1 class="">Join Kshizzy today!</h1>
+<div class="signup-container vertical-shadow">
+	<h1 class="">Create account</h1>
     <%= form_for(@user) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <%= render 'fields', f: f %>
-        <%= f.submit "Create my account", class: "btn btn-large btn-warning" %>
+        <%= render 'submit_button', f: f %>
     <% end %>
     <span class="text-center">
     	<small>Note: Others will be able to find you by name, username or email. Your email will not be shown publicly. You can change your privacy settings at any time.

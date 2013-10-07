@@ -2,14 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.well-signup-container {
+.signup-container {
 	margin: 3% auto;
 	padding: 30px;
-	width: 30%;
-	background: #eeeeee;
+	width: 50%;
+	background: #F6F5ED;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
+	h1 {
+		color: #3F4944;
+	}
 }
 
 .signup-row {
@@ -25,6 +28,47 @@
 }
 
 #user_first_name, #user_last_name, #user_email, #user_password {
-	padding-top: 5px;
-	padding-bottom: 5px;
+	background: none repeat scroll 0 0 #DCD7CE;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.35) inset, 0 1px 0 #FFFFFF;
+	color: #565658;
+	font-size: 1.1em;
+	padding: 7px;
+}
+
+form label {
+    display: block;
+    font-size: 1em;
+    font-weight: 600;
+    margin: 0 0 5px;
+    text-transform: uppercase;
+    color: #565658;
+}
+
+.submit {
+	padding: 10px 0 15px;
+}
+
+.submit input[type="submit"] {
+	width: 80%;
+}
+
+.submit-button-a {
+	display: block;
+    margin: 0 auto;
+    background: none repeat scroll 0 0 #228B9B;
+    color: #EEEEEE;
+    -webkit-border-radius: 20px 0px;
+    -moz-border-radius: 20px 0px;
+    border-radius: 20px 0px;
+    padding: 20px 25px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    font-weight: 600;
+    border-width: 0px;
+    box-shadow: 1px 1px 3px #000000;
+    &:hover {
+    	background: none repeat scroll 0 0 #1D7886;
+    	box-shadow: 1px 1px 3px #000000 inset;
+    }
 }
