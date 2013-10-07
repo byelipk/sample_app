@@ -72,3 +72,19 @@ form label {
     	box-shadow: 1px 1px 3px #000000 inset;
     }
 }
+
+@media screen and (max-width: 645px) {
+	.submit-button-a {
+		font-size: 1.2em;
+	}
+}
+
+@media screen and (max-width: 530px) {
+	.submit-button-a {
+		font-size: .85em;
+	}
+
+	.submit input[type="submit"] {
+		width: 100%;
+	}
+}
