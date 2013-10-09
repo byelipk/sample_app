@@ -1,17 +1,23 @@
-<div class="row">
-	<aside class="span4">
-    	<section>
+<section class="row-fluid">
+	<aside class="span3">
+    	<div>
      	 <%= render 'shared/user_info' %>
-    	</section>
-      <section>
+    	</div>
+      <div>
        <%= render 'shared/stats' %>
-      </section>      
-    	<section>
-     	 <%= render 'shared/micropost_form' %>
-    	</section>   
+      </div>      
+  
 	</aside>
-	<div class="span8">
-  		<h3>Micropost Feed</h3>
-  		<%= render 'shared/feed' %>
+	<div class="span4">
+  		<div>
+       <%= render 'shared/micropost_form' %>
+      </div> 
+  		
 	</div>
-</div>
+</section>
+<section class="row-fluid">
+  <div class="span3">
+      <h3>Feed</h3>
+      <%= render 'shared/feed' %>
+  </div>
+</section>

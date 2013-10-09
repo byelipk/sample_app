@@ -14,8 +14,9 @@
 
 	<section class="span8">
 		<%= render 'follow_form' if signed_in? %>
-		
+		<%= render 'social/social' %>
 		<% if @user.microposts.any? %>
+		    </ul>			
 			<h3>Recent Ramblings ( <%= @user.microposts.count %> )</h3>	
 				<ol class="microposts">
 					<%= render @microposts %>

@@ -20,14 +20,16 @@ html {
 
 body {
   font-family: 'Open Sans', Helvetica Neue, sans-serif, helvetica;
+  background-color: #EFEDDF;
 }
 
 section {
-  overflow: auto;
+  overflow: hidden;
 }
 
 textarea {
   resize: vertical;
+  height: 30px;
 }
 
 .center {
@@ -38,7 +40,8 @@ textarea {
 }
 
 .my-container {
-  margin-top: 2.5em;
+  margin: 2.5em auto;
+  width: 85%;
 }
 
 /* typography */
