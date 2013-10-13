@@ -9,12 +9,11 @@
   </head>
   <body>
     <%= render 'layouts/header' %> 
-    
     <%#= render 'layouts/alpha-signup' %>
-    
     <% if @current_user.nil? %>
       <%= yield %>
     <% else %>
+      <%= render 'layouts/subheader' %>
       <section class="my-container">
     		<% flash.each do |key, value| %>
           <%= content_tag(:div, value, class: "alert alert-#{key}") %>
@@ -22,7 +21,6 @@
     		<%= yield %>
     	</section>
     <% end %>
-    
     <%= render 'layouts/footer' %>
   </body>
 </html>

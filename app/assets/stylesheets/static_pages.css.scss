@@ -4,8 +4,10 @@
 
 /* Welcome colorpslash */
 
+$base: #8E4C9B;
+
 .welcome-wrapper {
-	background-color: #8E4C9B;
+	background-color: $base;
 	position: relative;
 	height: 44em;
 	overflow: hidden;
@@ -54,22 +56,21 @@
     padding: 1em;
 }
 
-.sign-in-up {
-		
-}
-
 .signin-form, .signup-form {
 	width: 40%;
 	float: right;
+	#email, #password {
+		background: none repeat scroll 0 0 #DCD7CE;
+		-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.35) inset, 0 1px 0 #FFFFFF;
+		-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.35) inset, 0 1px 0 #FFFFFF;
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.35) inset, 0 1px 0 #FFFFFF;
+		color: #565658;
+		font-size: 1.1em;
+		padding: 7px;
+	}
 }
 
-#email, #password {
-	background: none repeat scroll 0 0 #DCD7CE;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.35) inset, 0 1px 0 #FFFFFF;
-	color: #565658;
-	font-size: 1.1em;
-	padding: 7px;
-}
+
 
 .signup-form h4 {
 	border-bottom: 1px solid #e2e2e2;
@@ -77,6 +78,8 @@
 	-moz-box-shadow: 0 1px 0 #fff;
 	box-shadow: 0 1px 0 #fff;
 	padding-bottom: .75em;
+	-webkit-text-shadow: 2px 2px 1px rgba(255,255,255,0.6);
+	-moz-text-shadow: 2px 2px 1px rgba(255,255,255,0.6);
 	text-shadow: 2px 2px 1px rgba(255,255,255,0.6);
 }
 
@@ -108,8 +111,10 @@
 		-webkit-box-shadow: 1px 1px 3px #000000 inset;
 		-moz-box-shadow: 1px 1px 3px #000000 inset;
 		box-shadow: 1px 1px 3px #000000 inset;
-	}
+	}	
 }
+
+
 
 .signin-button {
 	background-color: #185996;

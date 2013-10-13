@@ -90,6 +90,42 @@ p {
   }
 }
 
+/* Subheader */
+
+.subheader {
+  background-color: oldlace;
+  position: relative;
+  font-size: larger;
+  a {
+    color: #606e67;
+    font-weight: bold;
+    margin-left: 15px;
+    &:last-child {
+      float: right;
+    }
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.subheader-row {
+  width: 90%;
+  margin: auto;
+  padding: 2em 0;
+}
+
+.subheader-item {
+  text-transform: uppercase;
+  padding: 20px 10px;
+  &:hover {
+  
+  }
+}
+
+.profile-pop-out {
+  
+}
 
 /* footer */
 
