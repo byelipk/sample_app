@@ -15,11 +15,13 @@ class MicropostsController < ApplicationController
 
   def destroy
 		@micropost.destroy
-    redirect_to root_url
+    respond_to do |format|
+      format.html { redirect_to current_user }
+      format.js
+    end
   end
 
   private
-
     def correct_user
       @micropost = current_user.microposts.find_by_id(params[:id])
     rescue
