@@ -4,8 +4,6 @@
 
 /* mixins, variables, etc. */
 
-/* #eaeaea: #eaeaea; */
-
 @mixin box_sizing {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -71,6 +69,10 @@ p {
   line-height: 1.7em;
 }
 
+a {
+  color: #606e67;
+}
+
 
 /* header */
 
@@ -112,12 +114,12 @@ p {
 .subheader-row {
   width: 90%;
   margin: auto;
-  padding: 2em 0;
+  padding: .75em 0;
 }
 
 .subheader-item {
-  text-transform: uppercase;
   padding: 20px 10px;
+  text-transform: uppercase;
   &:hover {
   
   }
@@ -281,7 +283,7 @@ input {
 }
 
 .timestamp {
-  color: #eaeaea;
+  color: brown;
 }
 
 aside {
