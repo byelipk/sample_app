@@ -1,0 +1,139 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700);
+
+/* Popout */
+
+.popout {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #3F3F41;
+  width: 20%;
+  height: 600px;
+  a {
+    color: antiquewhite;
+    text-decoration: none;
+  }
+}
+
+.popout-header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background-color: #333335;
+  .center {
+    padding: 15px 0;
+  }
+  &:hover {
+    cursor: pointer;
+    #popout-toggle {
+      color: #E9D7D7;
+    }
+  }
+}
+
+#popout-toggle {
+  color: #696969;
+  font-size: large;
+  font-weight: 600; 
+}
+
+.popout-body {
+  position: relative;
+  margin: auto;
+  width: 100%;
+  top: 3.7em;
+  height: 70%;
+}
+
+.popout-bucket {
+  padding: 20px 15px;
+  img {
+    float: left;
+  }
+  span, a {
+    margin-left: 20px;
+  }
+  a {
+    font-size: 1.5em;
+  }
+  h7 {
+    font-weight: 100;
+    a {
+      color: #868788;
+    }
+  }
+}
+
+.popout-footer {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  background-color: #4D4C4C;
+  padding: 15px 0;
+  -webkit-box-shadow: 1px 1px 2px black;
+  -moz-box-shadow: 1px 1px 2px black;
+  box-shadow: 1px 1px 2px black;
+  &:hover {
+    background-color: #665F5F;
+    color: #E9D7D7;
+    a {
+      color: antiquewhite;
+    }   
+  }
+  a {
+    cursor: pointer;
+    color: #696969;
+    &:hover {
+      color: #E9D7D7;
+    }
+  }
+}
+
+$box-shadow: #353434;
+
+.popout-messages, .popout-conversations, .popout-notifications {
+  background-color: #5F5E5E;
+  font-size: .9em;
+  color: antiquewhite;
+  margin-top: 10px;
+  padding: 10px;
+  -webkit-box-shadow: 1px 1px 2px $box-shadow;
+  -moz-box-shadow: 1px 1px 2px $box-shadow;
+  box-shadow: 1px 1px 2px $box-shadow;
+  &:hover {
+    background-color: #807C7C;
+    cursor: pointer;
+    -webkit-box-shadow: 1px 1px 2px $box-shadow inset;
+  	-moz-box-shadow: 1px 1px 2px $box-shadow inset;
+  	box-shadow: 1px 1px 2px $box-shadow inset;
+  }
+}
+
+.popout-msg, .popout-convo, .popout-note {
+  width: 100%;
+  margin: auto;
+  text-align: left;
+  font-size: 1em;
+}
+
+.popout-stats {
+  margin-top: 20px;
+  padding: 20px;
+  color: #889991;
+  font-family: "OpenSansCondensedBold",Helvetica,Arial,sans-serif;
+  font-size: 1em;
+  text-transform: uppercase;  
+  div span {
+  	float: right;
+	font-size: 1.3em;
+  }
+}
+
+.thought-box {
+	margin: auto;
+	width: 80%;
+	input {
+		background-color: rgba(128, 127, 127, 0.39);
+		color: antiquewhite;
+	}
+}

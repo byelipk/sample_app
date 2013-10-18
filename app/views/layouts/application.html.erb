@@ -8,18 +8,19 @@
     <%= render 'layouts/shim' %>
   </head>
   <body>
-    <%= render 'layouts/header' %> 
-    <%#= render 'layouts/alpha-signup' %>
+    <%= render 'layouts/header/header' %> 
     <% if @current_user.nil? %>
       <%= yield %>
     <% else %>
-      <%= render 'layouts/subheader' %>
-      <section class="my-container">
-    		<% flash.each do |key, value| %>
-          <%= content_tag(:div, value, class: "alert alert-#{key}") %>
-        <% end %>
-    		<%= yield %>
-    	</section>
+      <section class="my-wrapper">
+        <%= render 'layouts/popout' %>
+        <section class="my-container">
+      		<% flash.each do |key, value| %>
+            <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+          <% end %>
+      		<%= yield %>
+      	</section>
+      </section>
     <% end %>
     <%= render 'layouts/footer' %>
   </body>

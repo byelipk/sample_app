@@ -37,6 +37,12 @@ textarea {
   }
 }
 
+.my-wrapper {
+  width: 100%;
+  position: relative;
+  min-height: 700px;
+}
+
 .my-container {
   margin: 2.5em auto;
   width: 85%;
@@ -76,6 +82,29 @@ a {
 
 /* header */
 
+#profile-pop-out {
+  
+}
+
+.search-items {
+  width: 45%;
+}
+
+.search_field {
+  float: left;
+    width: 20%;
+}
+
+.nametag {
+  float: right;
+  position: relative;
+  top: .3em;
+  display: none;
+  a {
+    margin-right: 20px;
+  }
+}
+
 #logo {
   float: left;
   margin-right: 10px;
@@ -92,42 +121,6 @@ a {
   }
 }
 
-/* Subheader */
-
-.subheader {
-  background-color: oldlace;
-  position: relative;
-  font-size: larger;
-  a {
-    color: #606e67;
-    font-weight: bold;
-    margin-left: 15px;
-    &:last-child {
-      float: right;
-    }
-    &:hover {
-      text-decoration: none;
-    }
-  }
-}
-
-.subheader-row {
-  width: 90%;
-  margin: auto;
-  padding: .75em 0;
-}
-
-.subheader-item {
-  padding: 20px 10px;
-  text-transform: uppercase;
-  &:hover {
-  
-  }
-}
-
-.profile-pop-out {
-  
-}
 
 /* footer */
 
@@ -190,31 +183,26 @@ aside {
   }
 }
 
+/* Gravatar */
+
 .gravatar {
   float: left;
   margin-right: 10px;
 }
 
-.stats {
-  overflow: auto;
-  a {
-    float: left;
-    padding: 0 10px;
-    border-left: 1px solid #d8c4c4;
-    color: gray;
-    &:first-child {
-      padding-left: 0;
-      border: 0;
-    }
-    &:hover {
-      text-decoration: none;
-      color: blue;
-    }
-  }
-  strong {
-    display: block;
-  }
+.gravatar-header {
+  position: relative;
+  cursor: pointer;
 }
+
+.stats {
+  font-size: .7em;
+  a:first-child {
+    margin-left: 0;
+  }
+} 
+
+
 
 .user_avatars {
   overflow: auto;

@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/* Signed Out */
 /* Welcome colorpslash */
 
 $base: #8E4C9B;
@@ -164,9 +165,11 @@ $base: #8E4C9B;
 .navbar-inverse .navbar-inner {
 	text-transform: uppercase;
     background-image: linear-gradient(to bottom, #444444, #111111);
-    .container {
-    	padding: 20px 0;
-    }
+}
+
+.input-medium.search-query {
+	margin-top: 10px;
+	margin-bottom: -10px;
 }
 
 .well {
