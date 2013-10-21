@@ -13,7 +13,7 @@
       <%= yield %>
     <% else %>
       <section class="my-wrapper">
-        <%= render 'layouts/popout' %>
+        <%= render 'layouts/popout/popout' %>
         <section class="my-container">
       		<% flash.each do |key, value| %>
             <%= content_tag(:div, value, class: "alert alert-#{key}") %>

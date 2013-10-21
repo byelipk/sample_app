@@ -1,14 +1,27 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700);
 
+/* Colors */
+$body: #3F3F41; 
+$box-shadow: #353434;
+
+/* Popout action colors */
+
+$ppl: #8D11F0;
+$msg: #E23535;
+$thk: #F1F112;
+$con: #F12E5D;
+$not: #7E7EFF;
+$mng: #00b800;
+
 /* Popout */
 
 .popout {
   position: absolute;
-  right: 0;
-  top: 0;
-  background-color: #3F3F41;
+  right: 0px;
+  background-color: $body;
   width: 20%;
   height: 600px;
+  overflow: hidden;
   a {
     color: antiquewhite;
     text-decoration: none;
@@ -42,7 +55,7 @@
   margin: auto;
   width: 100%;
   top: 3.7em;
-  height: 70%;
+  height: 83%;
 }
 
 .popout-bucket {
@@ -60,8 +73,80 @@
     font-weight: 100;
     a {
       color: #868788;
+      font-size: 1.2em;
     }
   }
+}
+
+.popout-carousel {
+  padding: 5px;
+  height: 73%;
+}
+
+.carousel-actions {
+  position: absolute;
+  width: 96.5%;
+  height: 73%;
+}
+
+.carousel-content {
+  @extend .carousel-actions;
+  right: 289px;
+  opacity: .8;
+}
+
+.carousel-action {
+  width: 47.5%%;
+  height: 33.3336%;
+  float: left;
+  border: 3px solid;
+  cursor: pointer;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+#action-ppl {
+  background-color: $ppl;
+  &:hover {
+    background-color: #C683FC;
+  }
+}
+#action-msg {
+  background-color: $msg;
+  &:hover {
+    background-color: #F0A2A2;
+  }
+}
+#action-thk {
+  background-color: $thk;
+  &:hover {
+    background-color: #E4E4B9;
+  }
+}
+#action-con {
+  background-color: $con;
+  &:hover {
+    background-color: #DD85C1;
+  }
+}
+#action-not {
+  background-color: $not;
+  &:hover {
+    background-color: #9E9EE9;
+  }
+}
+#action-mng {
+  background-color: $mng;
+  &:hover {
+    background-color: #7FD67F;
+  }
+}
+
+.test {
+  width:50px;
+  height:40px;
+  background:url(msg.png) 0 0;
 }
 
 .popout-footer {
@@ -89,11 +174,9 @@
   }
 }
 
-$box-shadow: #353434;
-
 .popout-messages, .popout-conversations, .popout-notifications {
   background-color: #5F5E5E;
-  font-size: .9em;
+  font-size: 1.3em;
   color: antiquewhite;
   margin-top: 10px;
   padding: 10px;
@@ -103,9 +186,6 @@ $box-shadow: #353434;
   &:hover {
     background-color: #807C7C;
     cursor: pointer;
-    -webkit-box-shadow: 1px 1px 2px $box-shadow inset;
-  	-moz-box-shadow: 1px 1px 2px $box-shadow inset;
-  	box-shadow: 1px 1px 2px $box-shadow inset;
   }
 }
 
@@ -114,26 +194,4 @@ $box-shadow: #353434;
   margin: auto;
   text-align: left;
   font-size: 1em;
-}
-
-.popout-stats {
-  margin-top: 20px;
-  padding: 20px;
-  color: #889991;
-  font-family: "OpenSansCondensedBold",Helvetica,Arial,sans-serif;
-  font-size: 1em;
-  text-transform: uppercase;  
-  div span {
-  	float: right;
-	font-size: 1.3em;
-  }
-}
-
-.thought-box {
-	margin: auto;
-	width: 80%;
-	input {
-		background-color: rgba(128, 127, 127, 0.39);
-		color: antiquewhite;
-	}
 }

@@ -37,13 +37,16 @@ $base: #8E4C9B;
   	position: relative;
   	top: 2.5em;
   	right: 7em;
+  	width: 50%;
+  	height: 50%;
   	h1, h2 {
   		font-weight: 300;
   		color: #eeeeee;
-  		text-shadow: 1px 1px 3px black;
+  		//text-shadow: 1px 1px 3px black;
 	}
 	h2 {
-		text-shadow: 1px 1px 5px black;
+		//text-shadow: 1px 1px 5px black;
+		line-height: 1.25em;
 	}
 }
 
