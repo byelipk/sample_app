@@ -6,12 +6,12 @@ $box-shadow: #353434;
 
 /* Popout action colors */
 
-$ppl: #8D11F0;
-$msg: #E23535;
-$thk: #F1F112;
-$con: #F12E5D;
-$not: #7E7EFF;
-$mng: #00b800;
+$ppl: #2A4A8E;
+$msg: #E1816F;
+$thk: #5681DB; 
+$con: #80A831;
+$not: #6F8E31;
+$mng: #5681DB;
 
 /* Popout */
 
@@ -86,7 +86,8 @@ $mng: #00b800;
 .carousel-actions {
   position: absolute;
   width: 96.5%;
-  height: 73%;
+  height: 80%;
+  overflow: hidden;
 }
 
 .carousel-content {
@@ -96,8 +97,8 @@ $mng: #00b800;
 }
 
 .carousel-action {
-  width: 47.5%%;
-  height: 33.3336%;
+  width: 47.5%;
+  height: 32%;
   float: left;
   border: 3px solid;
   cursor: pointer;
@@ -114,6 +115,7 @@ $mng: #00b800;
 }
 #action-msg {
   background-color: $msg;
+  float: right;
   &:hover {
     background-color: #F0A2A2;
   }
@@ -126,6 +128,7 @@ $mng: #00b800;
 }
 #action-con {
   background-color: $con;
+  float: right;
   &:hover {
     background-color: #DD85C1;
   }
@@ -138,6 +141,7 @@ $mng: #00b800;
 }
 #action-mng {
   background-color: $mng;
+  float: right;
   &:hover {
     background-color: #7FD67F;
   }
