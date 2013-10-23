@@ -1,8 +1,9 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700);
 
-/* Colors */
+/* Popout styling */
+
+/* Base Colors */
 $body: #3F3F41; 
-$box-shadow: #353434;
 
 /* Popout action colors */
 
@@ -12,9 +13,8 @@ $thk: #DB5656;
 $con: #927DB1;
 $not: #8F00FF;
 $mng: #14CC5D;
-$hover: #7139A0;
 
-/* Popout */
+/* Popout Main */
 
 .popout {
   position: absolute;
@@ -28,6 +28,8 @@ $hover: #7139A0;
     text-decoration: none;
   }
 }
+
+/* Header */
 
 .popout-header {
   position: absolute;
@@ -79,6 +81,8 @@ $hover: #7139A0;
   }
 }
 
+/* Carosel */
+
 .popout-carousel {
   padding: 5px;
   height: 410px;
@@ -121,7 +125,12 @@ $hover: #7139A0;
   }
 }
 
+.selected {
+  background-color: #333333;
+}
+
 /* Sprites */
+
 .icon {
   height: 50px;
   width: 60px;
@@ -154,7 +163,7 @@ $hover: #7139A0;
   background-position: 0px -300px;
 }
 
-#action-wrapper {
+.action-wrapper {
   margin-left: auto;
   margin-right: auto;
 }
@@ -181,11 +190,7 @@ $hover: #7139A0;
   float: right;
 }
 
-.test {
-  width:50px;
-  height:40px;
-  background:url(msg.png) 0 0;
-}
+/* Footer */
 
 .popout-footer {
   bottom: 0;
@@ -210,26 +215,4 @@ $hover: #7139A0;
       color: #E9D7D7;
     }
   }
-}
-
-.popout-messages, .popout-conversations, .popout-notifications {
-  background-color: #5F5E5E;
-  font-size: 1.3em;
-  color: antiquewhite;
-  margin-top: 10px;
-  padding: 10px;
-  -webkit-box-shadow: 1px 1px 2px $box-shadow;
-  -moz-box-shadow: 1px 1px 2px $box-shadow;
-  box-shadow: 1px 1px 2px $box-shadow;
-  &:hover {
-    background-color: #807C7C;
-    cursor: pointer;
-  }
-}
-
-.popout-msg, .popout-convo, .popout-note {
-  width: 100%;
-  margin: auto;
-  text-align: left;
-  font-size: 1em;
 }

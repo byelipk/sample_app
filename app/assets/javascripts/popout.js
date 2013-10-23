@@ -9,11 +9,10 @@ $('.popout-header').click(function() {
   	$('#profile-pop-out').fadeIn();
 });
 
-// Slide effect
+// Carosel slide effect
 $('.popout-bucket').click(function() {
 	$('.carousel-actions').animate({'margin-left': '1000px'}, 500, 'swing');
-	$('.carousel-content').animate({'left': '5px'}, 500, 'swing');
-	console.log(this);								
+	$('.carousel-content').animate({'left': '5px'}, 500, 'swing');							
 });
 
 $('.carousel-content p').click(function() {
@@ -23,25 +22,21 @@ $('.carousel-content p').click(function() {
 
 // Popout menu navigation effect
 $('.carousel-actions > div').toggle(function () {
-	id = $(this).attr("id");
-	siblings = $(this).siblings();
-	label = $(this).children();
+	mySiblings = $(this).siblings(); // Represents unclicked tiles
+	myLabel = $(this).children('.action-wrapper'); // Navigation tile
+	myContent = $(this).children('.content-wrapper') // Displayed when user clicks on tile
+	currBackground = $(this).css( 'background-color' ); // Current tile background color value
 
+	for (var i = 0; i < mySiblings.length; i++) {
 
-	for (var i = 0; i < siblings.length; i++) {
-
-		if (siblings[i]["id"] == id ) {
-			continue
-		}
-
-		if ( siblings[i]["id"] == "action-ppl" || siblings[i]["id"] == "action-thk" || siblings[i]["id"] == "action-not" ) {
-			$('#' + siblings[i]["id"] +'').animate({
+		if ( mySiblings[i]["id"] == "action-ppl" || mySiblings[i]["id"] == "action-thk" || mySiblings[i]["id"] == "action-not" ) {
+			$('#' + mySiblings[i]["id"] +'').animate({
 				opacity: 'hide',
 				height: 'hide',
 				marginLeft: '200px'
 			}, 'slow');	
 		} else {
-			$('#' + siblings[i]["id"] +'').animate({
+			$('#' + mySiblings[i]["id"] +'').animate({
 				opacity: 'hide',
 				height: 'hide',
 				marginRight: '200px'
@@ -49,24 +44,30 @@ $('.carousel-actions > div').toggle(function () {
 		}		
 	}
 
-	label.hide();
-    $(this).animate( { height: "28.55em", width: "19.2em", opacity: .1 }, 500 );
+	// Hide tile
+	myLabel.hide();
+	
+	// Animate the tile
+    $(this).css( "backgroundColor", "#333333" ).animate( { 
+		height: "28.55em", 
+		width: "19.2em" }, 500, function() {
+
+			// Show content
+ 			myContent.children().show();
+    });
 
 	}, function () {
 
-		for (var i = 0; i < siblings.length; i++) {
-			if (siblings[i]["id"] == id ) {
-				continue
-			}
+		for (var i = 0; i < mySiblings.length; i++) {
 
-			if ( siblings[i]["id"] == "action-ppl" || siblings[i]["id"] == "action-thk" || siblings[i]["id"] == "action-not" ) {
-				$('#' + siblings[i]["id"] +'').animate({
+			if ( mySiblings[i]["id"] == "action-ppl" || mySiblings[i]["id"] == "action-thk" || mySiblings[i]["id"] == "action-not" ) {
+				$('#' + mySiblings[i]["id"] +'').animate({
 					opacity: 'show',
 					height: 'show',
 					marginLeft: '0px'
 				}, 'slow');	
 			} else {
-				$('#' + siblings[i]["id"] +'').animate({
+				$('#' + mySiblings[i]["id"] +'').animate({
 					opacity: 'show',
 					height: 'show',
 					marginRight: '0px'
@@ -74,7 +75,15 @@ $('.carousel-actions > div').toggle(function () {
 			}
 		}
 
-		$(this).animate( { height: "9em", width: "9.2em", opacity: 1 }, 500, function() {
-			label.show();
+		// Hide content
+		myContent.children().hide();
+
+		// Animate the tile back to original position
+		$(this).css('backgroundColor', ' ' + currBackground +' ' ).animate( { 
+			height: "9em", 
+			width: "9.2em" }, 500, function() {
+
+				// Show tile
+				myLabel.show();
 		});
 });
