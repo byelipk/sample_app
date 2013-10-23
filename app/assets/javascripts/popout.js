@@ -1,11 +1,11 @@
 // Main slidein/slideout function
 $('#profile-pop-out').click(function() {
-	$('.popout').animate({'right':'0px'}, 500, 'swing');
+	$('.popout').animate({'right':'0px'}, 500);
 	$(this).fadeOut();
 });
 
 $('.popout-header').click(function() {
-	$('.popout').animate({'right':'-1000px'}, 500, 'swing');
+	$('.popout').animate({'right':'-1000px'}, 500);
   	$('#profile-pop-out').fadeIn();
 });
 
