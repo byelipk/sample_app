@@ -24,52 +24,57 @@ $('.carousel-content p').click(function() {
 // Popout menu navigation effect
 $('.carousel-actions > div').toggle(function () {
 	id = $(this).attr("id");
-	children = $(this).parent().find("div");
-	for (var i = 0; i < children.length; i++) {
-		if (children[i]["id"] == id ) {
+	siblings = $(this).siblings();
+	label = $(this).children();
+
+
+	for (var i = 0; i < siblings.length; i++) {
+
+		if (siblings[i]["id"] == id ) {
 			continue
 		}
 
-		if ( children[i]["id"] == "action-ppl" || children[i]["id"] == "action-thk" || children[i]["id"] == "action-not" ) {
-			console.log(children[i]['id'] + " needs to have its margin-left animated");
-			$('#' + children[i]["id"] +'').animate({
+		if ( siblings[i]["id"] == "action-ppl" || siblings[i]["id"] == "action-thk" || siblings[i]["id"] == "action-not" ) {
+			$('#' + siblings[i]["id"] +'').animate({
 				opacity: 'hide',
 				height: 'hide',
 				marginLeft: '200px'
 			}, 'slow');	
 		} else {
-			console.log(children[i]['id'] + " needs to have its margin-right animated");
-			$('#' + children[i]["id"] +'').animate({
+			$('#' + siblings[i]["id"] +'').animate({
 				opacity: 'hide',
 				height: 'hide',
 				marginRight: '200px'
 			}, 'slow');
 		}		
 	}
-    
-    $(this).animate( { height: "100%", width: "98%", opacity: .1 }, 500 );
+
+	label.hide();
+    $(this).animate( { height: "28.55em", width: "19.2em", opacity: .1 }, 500 );
 
 	}, function () {
-	for (var i = 0; i < children.length; i++) {
-		if (children[i]["id"] == id ) {
-			continue
+
+		for (var i = 0; i < siblings.length; i++) {
+			if (siblings[i]["id"] == id ) {
+				continue
+			}
+
+			if ( siblings[i]["id"] == "action-ppl" || siblings[i]["id"] == "action-thk" || siblings[i]["id"] == "action-not" ) {
+				$('#' + siblings[i]["id"] +'').animate({
+					opacity: 'show',
+					height: 'show',
+					marginLeft: '0px'
+				}, 'slow');	
+			} else {
+				$('#' + siblings[i]["id"] +'').animate({
+					opacity: 'show',
+					height: 'show',
+					marginRight: '0px'
+				}, 'slow');
+			}
 		}
 
-		if ( children[i]["id"] == "action-ppl" || children[i]["id"] == "action-thk" || children[i]["id"] == "action-not" ) {
-			console.log(children[i]['id'] + " needs to have its margin-left animated");
-			$('#' + children[i]["id"] +'').animate({
-				opacity: 'show',
-				height: 'show',
-				marginLeft: '0px'
-			}, 'slow');	
-		} else {
-			console.log(children[i]['id'] + " needs to have its margin-right animated");
-			$('#' + children[i]["id"] +'').animate({
-				opacity: 'show',
-				height: 'show',
-				marginRight: '0px'
-			}, 'slow');
-		}
-	}
-	$(this).animate( { height: "32%", width: "47.5%", opacity: 1 }, 500 );
+		$(this).animate( { height: "9em", width: "9.2em", opacity: 1 }, 500, function() {
+			label.show();
+		});
 });

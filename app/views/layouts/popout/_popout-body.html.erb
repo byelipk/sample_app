@@ -3,7 +3,6 @@
 		<%= gravatar_for @current_user, size: 60 %>
 		<div class="bucket-content">
 			<h5><%= link_to current_user.first_name, "#" %><h5>
-			<!-- <h7><%#= link_to "Edit Profile", edit_user_path(current_user) %></h7> -->
 		</div>	
 	</div>
 	<div class="popout-carousel">
@@ -13,12 +12,42 @@
 			</div>		
 		</div>
 		<div class="carousel-actions">		
-			<div class="carousel-action" id="action-ppl"></div>
-			<div class="carousel-action" id="action-msg"></div>
-			<div class="carousel-action" id="action-thk"></div>
-			<div class="carousel-action" id="action-con"></div>
-			<div class="carousel-action" id="action-not"></div>
-			<div class="carousel-action" id="action-mng"></div>				
+			<div class="carousel-action" id="action-ppl">
+				<div id="action-wrapper">
+					<div class="icon" id="icon-ppl"></div>
+					<div class="type">People</div>
+				</div>
+			</div>
+			<div class="carousel-action" id="action-msg">
+				<div class="action-wrapper">
+					<div class="icon" id="icon-msg"></div>
+					<div class="type">Messages</div>
+				</div>
+			</div>
+			<div class="carousel-action" id="action-thk">
+				<div class="action-wrapper">
+					<div class="icon" id="icon-thk"></div>
+					<div class="type">Ideas</div>
+				</div>
+			</div>
+			<div class="carousel-action" id="action-con">
+				<div class="action-wrapper">
+					<div class="icon" id="icon-con"></div>
+					<div class="type">Conversations</div>
+				</div>
+			</div>
+			<div class="carousel-action" id="action-not">
+				<div class="action-wrapper">
+					<div class="icon" id="icon-not"></div>
+					<div class="type">Notifications</div>
+				</div>
+			</div>
+			<div class="carousel-action" id="action-mng">
+				<div class="action-wrapper">
+					<div class="icon" id="icon-mng"></div>
+					<div class="type">Settings</div>
+				</div>
+			</div>				
 		</div>
 	</div>
 </div>

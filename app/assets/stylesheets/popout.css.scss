@@ -6,12 +6,13 @@ $box-shadow: #353434;
 
 /* Popout action colors */
 
-$ppl: #2A4A8E;
-$msg: #E1816F;
-$thk: #5681DB; 
-$con: #80A831;
-$not: #6F8E31;
-$mng: #5681DB;
+$ppl: #5387F7;
+$msg: #663BEE;
+$thk: #DB5656; 
+$con: #927DB1;
+$not: #8F00FF;
+$mng: #14CC5D;
+$hover: #7139A0;
 
 /* Popout */
 
@@ -34,7 +35,7 @@ $mng: #5681DB;
   width: 100%;
   background-color: #333335;
   .center {
-    padding: 15px 0;
+    padding: 14px 0;
   }
   &:hover {
     cursor: pointer;
@@ -55,7 +56,7 @@ $mng: #5681DB;
   margin: auto;
   width: 100%;
   top: 3.7em;
-  height: 83%;
+  height: 500px;
 }
 
 .popout-bucket {
@@ -67,7 +68,7 @@ $mng: #5681DB;
     margin-left: 20px;
   }
   a {
-    font-size: 1.5em;
+    font-size: 1.45em;
   }
   h7 {
     font-weight: 100;
@@ -80,7 +81,7 @@ $mng: #5681DB;
 
 .popout-carousel {
   padding: 5px;
-  height: 73%;
+  height: 410px;
 }
 
 .carousel-actions {
@@ -97,54 +98,87 @@ $mng: #5681DB;
 }
 
 .carousel-action {
-  width: 47.5%;
-  height: 32%;
+  width: 9.2em;
+  height: 9em;
   float: left;
   border: 3px solid;
   cursor: pointer;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+  .type {
+    float: left;
+    position: relative;
+    color: antiquewhite;
+    font-weight: 300;
+    font-size: .9em;
+    padding: 10px;
+    top: 7em; 
+  }
+  &:hover .type {
+    font-size: 1.2em;
+    top: 5em;
+  }
+}
+
+/* Sprites */
+.icon {
+  height: 50px;
+  width: 60px;
+  background-image: url("mySprites.png");
+  position: relative;
+  margin: 30px auto -80px auto;
+}
+
+#icon-ppl {
+  background-position: 0px 0px;
+}
+
+#icon-msg {
+  background-position: 0px -60px;
+}
+
+#icon-thk {
+  background-position: 0px -120px;
+}
+
+#icon-con {
+  background-position: 0px -180px;
+}
+
+#icon-not {
+  background-position: 0px -240px; 
+}
+
+#icon-mng {
+  background-position: 0px -300px;
+}
+
+#action-wrapper {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #action-ppl {
   background-color: $ppl;
-  &:hover {
-    background-color: #C683FC;
-  }
 }
 #action-msg {
   background-color: $msg;
   float: right;
-  &:hover {
-    background-color: #F0A2A2;
-  }
 }
 #action-thk {
   background-color: $thk;
-  &:hover {
-    background-color: #E4E4B9;
-  }
 }
 #action-con {
   background-color: $con;
   float: right;
-  &:hover {
-    background-color: #DD85C1;
-  }
 }
 #action-not {
   background-color: $not;
-  &:hover {
-    background-color: #9E9EE9;
-  }
 }
 #action-mng {
   background-color: $mng;
   float: right;
-  &:hover {
-    background-color: #7FD67F;
-  }
 }
 
 .test {
