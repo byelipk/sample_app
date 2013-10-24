@@ -87,7 +87,7 @@ $mng: #14CC5D;
   }
 }
 
-/* Carosel */
+/* Carousel */
 
 .popout-carousel {
   padding: 5px;
@@ -101,11 +101,44 @@ $mng: #14CC5D;
   overflow: hidden;
 }
 
-.carousel-content {
+.carousel-people, .carousel-ideas, .carousel-notifications,
+.carousel-messages, .carousel-conversations, .carousel-settings {
   @extend .carousel-actions;
-  right: 289px;
-  opacity: .8;
 }
+
+.carousel-people { 
+  
+}
+
+.carousel-ideas {
+  
+}
+
+.carousel-notifications {
+  
+}
+
+$lefties: people ideas notifications; 
+$righties: messages conversations settings;
+$left: 289;
+$right: 289;
+
+@each $lefty in $lefties {
+  
+  .carousel-#{$lefty} {
+    right: #{$left}px;
+  }
+  $left: $left + 289;
+}
+
+@each $righty in $righties {
+  
+  .carousel-#{$righty} {
+    left: #{$right}px;
+  }
+  $right: $right + 289;
+}
+
 
 .carousel-action {
   width: 9.2em;
@@ -131,8 +164,33 @@ $mng: #14CC5D;
   }
 }
 
-.selected {
-  background-color: #333333;
+.carousel {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+
+.carousel-people, #action-people {
+  background-color: $ppl;
+}
+.carousel-messages, #action-messages {
+  background-color: $msg;
+}
+.carousel-ideas, #action-ideas {
+  background-color: $thk;
+}
+.carousel-conversations, #action-conversations {
+  background-color: $con;
+}
+.carousel-notifications, #action-notifications {
+  background-color: $not;
+}
+.carousel-settings, #action-settings {
+  background-color: $mng;
+}
+
+#action-messages, #action-conversations, #action-settings {
+  float: right;
 }
 
 /* Sprites */
@@ -172,29 +230,6 @@ $mng: #14CC5D;
 .action-wrapper {
   margin-left: auto;
   margin-right: auto;
-}
-
-#action-ppl {
-  background-color: $ppl;
-}
-#action-msg {
-  background-color: $msg;
-}
-#action-thk {
-  background-color: $thk;
-}
-#action-con {
-  background-color: $con;
-}
-#action-not {
-  background-color: $not;
-}
-#action-mng {
-  background-color: $mng;
-}
-
-#action-msg, #action-con, #action-mng {
-  float: right;
 }
 
 /* Footer */
