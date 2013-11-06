@@ -11,6 +11,7 @@
 #
 
 class EmailVerification < ActiveRecord::Base
+  
 	# Associations
   	belongs_to :user
 
@@ -19,16 +20,19 @@ class EmailVerification < ActiveRecord::Base
   	validates :code, presence: true
 
   	# Callbacks
-  	before_validation :make_code, on: :create
+  	before_validation :set_code, on: :create
   	after_create :send_verification_email
 
-	private
-	  	
-	  	def make_code
-	  		self.code = SecureRandom.urlsafe_base64(22)
-	  	end
+  	def deactivate
+  		self.active_link = false
+  		self.save(validate: false)
+  	end
 
-	  	def send_verification_email
-	  		UserMailer.email_verification(self).deliver
-	  	end
+	private 	
+  def set_code
+    self.code = SecureRandom.urlsafe_base64(22)
+  end
+  def send_verification_email
+  	UserMailer.email_verification(self).deliver
+  end
 end

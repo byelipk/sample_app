@@ -3,15 +3,15 @@
         <% flash.each do |key, value| %>
             <%= content_tag(:div, value, class: "alert alert-#{key}") %>
         <% end %>
-        <%= render 'homepage_welcome_message' %>
-    	<%= render 'homepage_signin_form' %>
-		<%= render 'homepage_signup_form' %>
-        <%= render 'homepage_buttons' %>	
+        <%= render 'static_pages/homepage/homepage_welcome_message' %>
+    	<%= render 'static_pages/homepage/homepage_signin_form' %>
+		<%= render 'static_pages/homepage/homepage_signup_form' %>
+        <%= render 'static_pages/homepage/homepage_buttons' %>	
 	</div>
 </section>
 
 <section class="fakebottom">
-    <%= render 'homepage_fakebottom' %>
+    <%= render 'static_pages/homepage/homepage_fakebottom' %>
 </section>
 
 <section class="container">

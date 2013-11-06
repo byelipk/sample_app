@@ -17,25 +17,19 @@
 
 class User < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation
+  
   has_secure_password
 
-  # -- Associations
-
-    # -- Simple, many-to-one association set-up & instance methods
-    has_many :microposts, dependent: :destroy
-    has_many :email_verifications, dependent: :destroy
-
-    # -- Complex, many-to-many association set-up & instance methods
-    has_many :relationships, foreign_key: "follower_id", dependent: :destroy
-    has_many :followed_users, through: :relationships, source: :followed
-    has_many :reverse_relationships, foreign_key: "followed_id",
-                                     class_name:  "Relationship",
-                                     dependent:   :destroy
-    has_many :followers, through: :reverse_relationships, source: :follower                               
-
-  # -- Attempt just before saving user into the DB
-  before_save { email.downcase! }
-  before_save :create_remember_token
+  # -- Simple, many-to-one association set-up & instance methods
+  has_many :microposts, dependent: :destroy
+  has_many :email_verifications, dependent: :destroy
+  # -- Complex, many-to-many association set-up & instance methods
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+  has_many :followed_users, through: :relationships, source: :followed
+  has_many :reverse_relationships, foreign_key: "followed_id",
+                                   class_name:  "Relationship",
+                                   dependent:   :destroy
+  has_many :followers, through: :reverse_relationships, source: :follower                               
 
   # -- Validations
   validates :first_name, presence: true, length: { maximum: 50 }
@@ -46,7 +40,15 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }
   #validates :password_confirmation, presence: true
+  
+  # -- Callbacks
+  before_save { email.downcase! }
+  before_save :create_remember_token
   after_validation { self.errors.messages.delete(:password_digest) }
+  after_create :send_confirmation_email  
+  
+  # Delegations
+  delegate :activate, :activated?, :to => :user_activator
 
   # -- Instance methods
 
@@ -67,16 +69,19 @@ class User < ActiveRecord::Base
     self.relationships.find_by_followed_id(other_user.id).destroy
   end
 
-  def name
-    self.first_name + " " + self.last_name
+  def fullname
+    "#{self.first_name.to_s}  #{self.last_name.to_s}".titleize
   end
-  
-  # -- Private methods
+
+  def user_activator
+    UserActivation.new(self)
+  end
 
   private
     def create_remember_token
       self.remember_token = SecureRandom.urlsafe_base64
     end
+    def send_confirmation_email
+      self.email_verifications.create!
+    end
 end
-
-

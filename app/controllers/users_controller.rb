@@ -24,14 +24,12 @@ class UsersController < ApplicationController
   end
 
   def new
-    if signed_in?
-      redirect_to @current_user
-    end
-  	@user = User.new(params[:user])
+    redirect_to @current_user if signed_in?
+    @user = User.new(params[:user])
   end
 
   def show
-  	@user = User.find(params[:id])
+    @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
 
     respond_to do |format|
@@ -48,10 +46,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if whitelist.include?(@user.email)
       if @user.save
-        # Send verification email
-        @user.email_verifications.create!
-        
-        # This is what we were doing...
+        # Confirmation email sent
         session[:email] = @user.email
         redirect_to action: :thanks
       else
@@ -74,9 +69,7 @@ class UsersController < ApplicationController
   def verify_email
     # User clicked on link sent to their email address
     verification = EmailVerification.find_by_code(params[:id])
-    if verification.nil?
-      redirect_to root_url
-    elsif !verification.active_link?
+    if verification.nil? || !verification.active_link?
       redirect_to root_url
     else
       user = verification.user

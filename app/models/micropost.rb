@@ -15,10 +15,11 @@ class Micropost < ActiveRecord::Base
   # Simple, many-to-one association set-up & instance methods
   belongs_to :user
 
+  # Validations
   validates :content, presence: true, length: { maximum: 140 }
   validates :user_id, presence: true
 
-  # Microposts will always been ordered by the most recent.
+  # Microposts will always be ordered by the most recent.
   default_scope order: "microposts.created_at DESC"
 
   # Returns microposts from the users being followed by the given user.
