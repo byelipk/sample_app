@@ -1,18 +1,3 @@
-<div class="search-items">
-	<ul class="nav pull-left">       
-	    <li><%= link_to "People", users_path %></li>
-	    <li><%= link_to "Conversations", "#" %></li>     
-	</ul>
-</div>
-
-<div class="search_field">
-	<%= form_tag '#', class: 'form-search' do %>
-	  <%= text_field_tag '#', nil, class: 'input-medium search-query', placeholder: "Search" %>
-	<% end %> 
-</div>
-
 <div class="nametag" id="profile-pop-out">
-	<%#= link_to current_user.first_name, user_path(@current_user), remote: true %>
-	<%#= link_to current_user.first_name, "#" %>
 	<%= gravatar_for @current_user %>
 </div>

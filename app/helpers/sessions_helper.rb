@@ -39,8 +39,14 @@ module SessionsHelper
   	cookies.delete(:remember_token)
   end
 
-  def redirect_back_or(default)
-    redirect_to(session[:return_to] || default)
+  def redirect_back_or(default, flash = {})
+    if !flash.empty?
+      key   = flash.first[0]
+      value = flash.first[1]
+      redirect_to( session[:return_to] || default, key => value )    
+    else
+      redirect_to( session[:return_to] || default )
+    end
     session.delete(:return_to)
   end
 

@@ -5,7 +5,7 @@ describe "StaticPages" do
 	subject { page }
 
 	context "Home page" do
-		pending
+
 		before { visit root_path }
 
 		it { should have_selector('h1', text: "Welcome") }
@@ -14,31 +14,30 @@ describe "StaticPages" do
 	end
 
 	context "Help page" do
-		pending
+
 		before { visit help_path }
 
-		xit { should have_selector('h1', text: "Help") }
-		xit { should have_selector('title', text: full_title('Help')) }	
+		it { should have_selector('h1', text: "Help") }
+		it { should have_selector('title', text: full_title('Help')) }	
 	end
 
 	context "About page" do
-		pending
+
 		before { visit about_path  }
 
-		xit { should have_selector('h1', text: "About Us") }
-		xit { should have_selector('title', text: full_title('About')) } 	
+		it { should have_selector('h1', text: "About Us") }
+		it { should have_selector('title', text: full_title('About')) } 	
 	end
 
 	context "Contact page" do
-		pending
+
 		before { visit contact_path }
 
-		xit { should have_selector('h1', text: "Contact Us") }
-		xit { should have_selector('title', text: full_title('Contact')) }
+		it { should have_selector('h1', text: "Contact Us") }
+		it { should have_selector('title', text: full_title('Contact')) }
 	end
 
   it "should have the right links on the layout" do
-  	pending
     visit root_path
     click_link "About"
     page.should have_selector 'title', text: full_title('About Us')
@@ -46,10 +45,17 @@ describe "StaticPages" do
     page.should have_selector 'title', text: full_title('Help')
     click_link "Contact"
     page.should have_selector 'title', text: full_title('Contact')
-    click_link "Home"
-    click_link "Sign up now!"
-    page.should have_selector 'title', text: full_title('Sign up')
-    click_link "sample app"
-    page.should have_selector 'title', text: full_title('')
+    # click_link "Privacy"
+    # page.should have_selector 'title', text: full_title('Privacy')
+    # click_link "Blog"
+    # page.should have_selector 'title', text: full_title('Blog')
+    # click_link "Jobs"
+    # page.should have_selector 'title', text: full_title('Jobs')
+    # click_link "Dev"
+    # page.should have_selector 'title', text: full_title('Development') 
+    # click_link "Terms"
+    # page.should have_selector 'title', text: full_title('Terms & Conditions')
+    # click_link "News"
+    # page.should have_selector 'title', text: full_title('News')               
   end	
 end

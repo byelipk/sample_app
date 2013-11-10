@@ -8,3 +8,10 @@ def full_title(page_name)
 		"#{base_title} | #{page_name}"
 	end
 end
+
+def set_user_to_active(user)
+	user.active 			= true
+	user.verified_email 	= true
+	user.save
+	user
+end

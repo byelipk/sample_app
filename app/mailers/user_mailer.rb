@@ -6,10 +6,10 @@ class UserMailer < ActionMailer::Base
   	@code = verify.code
 
   	# Production URL
-  	#@url = "https://sheltered-reaches-8554.herokuapp.com/users/verify/#{@code}"
+  	#@url = "https://sheltered-reaches-8554.herokuapp.com/confirm/email/#{@code}"
 
   	# Dev URL
-  	@url = "http://localhost:3000/users/verify/#{@code}"
+  	@url = "http://localhost:3000/confirm/email/#{@code}"
   	mail(to: @user.email, subject: 'Confirm your Kshizzy account')
   end
 end

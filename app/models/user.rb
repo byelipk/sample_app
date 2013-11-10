@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
                     format:     { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }
-  #validates :password_confirmation, presence: true
+  validates :password_confirmation, presence: true
   
   # -- Callbacks
   before_save { email.downcase! }
@@ -70,7 +70,7 @@ class User < ActiveRecord::Base
   end
 
   def fullname
-    "#{self.first_name.to_s}  #{self.last_name.to_s}".titleize
+    "#{self.first_name.to_s} #{self.last_name.to_s}".titleize
   end
 
   def user_activator

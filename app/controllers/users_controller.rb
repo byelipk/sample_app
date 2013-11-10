@@ -30,12 +30,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page])
-
-    respond_to do |format|
-      #format.js
-      format.html
-    end  
+    @microposts = @user.microposts.paginate(page: params[:page]) 
   end
 
   def create
@@ -48,61 +43,13 @@ class UsersController < ApplicationController
       if @user.save
         # Confirmation email sent
         session[:email] = @user.email
-        redirect_to action: :thanks
+        redirect_to thank_you_url
       else
         render 'new'
       end
     else
       flash[:error] = "Access is closed at this time. Thanks!"
       redirect_to root_url
-    end
-  end
-
-  def thanks
-    # Direct user to their email to finalize sign-up
-    redirect_to signup_url if session[:email].nil?
- 
-    @email = session[:email]
-    reset_session
-  end
-
-  def verify_email
-    # User clicked on link sent to their email address
-    verification = EmailVerification.find_by_code(params[:id])
-    if verification.nil? || !verification.active_link?
-      redirect_to root_url
-    else
-      user = verification.user
-      activate_user(user)
-      verification.active_link = false; verification.save!;
-      sign_in(user)
-      flash[:success] = "Welcome!"
-      redirect_to root_url
-    end
-  end
-
-  def activate
-    # to send a new activation link
-    if session[:lock].nil?
-      redirect_to signup_url
-    else
-      @user = User.new
-      reset_session
-    end
-  end
-
-  def resend
-    # user filled out request to send new activation link
-    @user = User.find_by_email(params[:user][:email])
-
-    if @user.nil?
-      redirect_to signup_url
-    else
-      e = @user.email_verifications.pop
-      e.active_link = false; e.save! 
-      @user.email_verifications.create!
-      session[:email] = @user.email
-      redirect_to action: :thanks
     end
   end
 

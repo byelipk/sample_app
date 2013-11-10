@@ -4,60 +4,84 @@ describe "UserPages" do
 
 	subject { page }
 
-	context "sign-up page" do
-		before { visit signup_path }
+    describe "signup page" do
+	    before { visit signup_path }
 
-		it { should have_selector('h1',    text: 'Sign up') }
-		it { should have_selector('title', text: full_title('Sign up')) }
+	    it { should have_selector('span',    text: 'Sign up') }
+	    it { should have_selector('section.signin-signup-wrapper') }
+		it { should have_selector('title', text: full_title('Create your Account') ) }
 	end
-
-	context "profile page" do
+	
+	describe "profile page" do
 		let(:user) { FactoryGirl.create(:user) }
 		before { visit user_path(user) }
 
-		it { should have_selector('h1',    text: user.name) }
-		it { should have_selector('title', text: user.name) }
+		it { should have_selector('title',  text: user.fullname) }
 	end
 
-	context "signup page" do
+	describe "sign-up process" do
+	    
 	    before { visit signup_path }
-	    let(:submit) { "Create my account" }
+	    
+	    let(:submit) { 'Create my account' }
 
 	    context "with invalid information" do
+	      
 	      it "should not create a user" do
 	        expect { click_button submit }.not_to change(User, :count)
 	      end
 
-	      describe "after submission" do
+	      describe "error messages after submission" do
 	        before { click_button submit }
 
-	        it { should have_selector('title', text: 'Sign up') }
-	        it { should have_content('error') }
+	        # This is the implementation for early development and it will change
+	        it { should have_selector('div.fakebottom-row') }
+	        it { should have_selector('div.alert.alert-error', text: 'Access') }
 	      end
 	    end	
 
 	    context "with valid information" do
-	        let(:user) { FactoryGirl.create(:user) }	        	
+			
 			before do
-				fill_in "Name",         		   with: user.name
-				fill_in "Email",        		   with: user.email.upcase
-				fill_in "Password",     		   with: user.password
-				fill_in "Password Confirmation",   with: user.password
-				#click_button "Sign in"
+				fill_in "user_first_name",     			with: "Marko"
+				fill_in "user_last_name",      			with: "Polo"
+				fill_in "user_email",          			with: "byelipk@hotmail.com"
+				fill_in "user_password",       			with: "foobar"
+				fill_in "user_password_confirmation",   with: "foobar"				
 			end	        
 
 	    	it "should create a new user" do
-	    		expect { click_button submit }.to change(User, :count).by(1)
+	    		expect { click_button submit }.to change(User, :count).by(1)    		
 	    	end
+
 
 	    	describe "after saving the user" do
 	    		before { click_button submit }
-	    		let(:user)  { User.find_by_email("user@example.com") }
 	    		
-	    		it { should have_selector('title', text: user.name) }
-	    		it { should have_selector('div.alert.alert-success', text: 'Welcome') }
-	    		it { should have_link('Sign out') }
+	    		it { should have_selector('title', text: "Account Activation") }
 	    	end
 	    end	
+
+	    context "without a white-listed email" do
+			
+			before do
+				fill_in "user_first_name",     with: "Marko"
+				fill_in "user_last_name",      with: "Polo"
+				fill_in "user_email",          with: "not_allowed@should_not_work.com"
+				fill_in "user_password",       with: "foobar"				
+			end	        
+
+	    	it "should not create a new user" do
+	    		expect { click_button submit }.to change(User, :count).by(0)    		
+	    	end
+
+
+	    	describe "should display message that access is closed" do
+	    		before { click_button submit }
+	    		
+	    		it { should have_selector('div.alert.alert-error', text: 'Access') }
+	    	end
+	    end
 	end	
 end
+

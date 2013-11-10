@@ -1,13 +1,17 @@
-<% provide(:title, 'Create an Account') %>
-<div class="signup-container vertical-shadow">
-	<h1>Create account</h1>
-    <%= form_for(@user) do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
-        <%= render 'fields', f: f %>
-        <%= render 'submit_button', f: f %>
+<% provide(:title, 'Create your Account') %>
+<section class="signin-signup-wrapper">
+    <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: "notice notice-#{key}") %>
     <% end %>
-    <span class="text-center">
-    	<small>Note: Others will be able to find you by name, username or email. Your email will not be shown publicly. You can change your privacy settings at any time.
-    	</small>
-    </span>
-</div>
+    <div class="form-header">       
+        <span class="sign-up-call-to-action">Sign up</span> 
+        <span class="link-to-sign-in"><%= link_to "Sign in", signin_path %></span>
+    </div>   
+    <div class="sign-up-form-container">
+        <%= form_for( @user ) do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
+            <%= render 'fields', f: f %>
+            <%= render 'submit_button', f: f %>
+        <% end %> 
+    </div>    
+</section>

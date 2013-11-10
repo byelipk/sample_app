@@ -1,0 +1,10 @@
+<%# We render this by explicity passing in f: render 'fields', f: f %>		
+<p>
+	<%= f.label :email, "Your email address" %>
+	<%= f.text_field :email %>
+</p>
+
+<p>
+	<%= f.label :password, "Choose a password" %>
+	<%= f.password_field :password %>
+</p>

@@ -1,7 +1,18 @@
 <% provide(:title, "Sign in") %>
-
-<div class="well-login-container">
-	<div class="card-case vertical-shadow">
-		<%= render 'choose_signin_method' %>
+<section class="signin-signup-wrapper">
+	<% flash.each do |key, value| %>
+		<%= content_tag(:div, value, class: "notice notice-#{key}") %>
+	<% end %>
+	<div class="form-header">		
+		<span class="sign-in-call-to-action">Sign in</span> 
+		<span class="link-to-sign-up"><%= link_to "Sign up", signup_path %></span>
 	</div>
-</div>
+	<div class="sign-in-form-container">
+	    <%= form_for(@user, url: {conroller: "sessions", action: "create"}) do |f| %>
+	        <%= render 'shared/error_messages', object: f.object %>
+	        <%= render 'fields', f: f %>
+	        <span class="link-to-password"><%= link_to "Forgot password?", "#" %></span>
+	        <%= render 'submit_button', f: f %>
+	    <% end %> 
+	</div>
+</section>
