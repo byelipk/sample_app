@@ -1,8 +1,10 @@
 <% provide(:title, "Sign in") %>
+<% flash.each do |key, value| %>
+	<%= content_tag(:div, value, 
+			id: "flash-notification",
+			class: "notice notice-#{key}") %>
+<% end %>
 <section class="signin-signup-wrapper">
-	<% flash.each do |key, value| %>
-		<%= content_tag(:div, value, class: "notice notice-#{key}") %>
-	<% end %>
 	<div class="form-header">		
 		<span class="sign-in-call-to-action">Sign in</span> 
 		<span class="link-to-sign-up"><%= link_to "Sign up", signup_path %></span>

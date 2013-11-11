@@ -33,10 +33,16 @@ describe User do
 
   it { should be_valid }
 
-  context "when name is not present" do
-  	before { @user.fullname = "" }
+  context "when first name is not present" do
+  	before { @user.first_name = "" }
 
   	it { should_not be_valid }
+  end
+
+  context "when last name is not present" do
+    before { @user.last_name = "" }
+
+    it { should_not be_valid }
   end
 
   context "when email is not present" do
