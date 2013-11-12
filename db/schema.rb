@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131028222205) do
+ActiveRecord::Schema.define(:version => 20131111221928) do
 
   create_table "email_verifications", :force => true do |t|
     t.integer  "user_id"
@@ -32,6 +32,30 @@ ActiveRecord::Schema.define(:version => 20131028222205) do
 
   add_index "microposts", ["user_id", "created_at"], :name => "index_microposts_on_user_id_and_created_at"
 
+  create_table "people", :force => true do |t|
+    t.integer  "owner_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "people", ["owner_id"], :name => "index_people_on_owner_id", :unique => true
+
+  create_table "profiles", :force => true do |t|
+    t.string   "first_name", :limit => 100
+    t.string   "last_name",  :limit => 100
+    t.date     "birthday"
+    t.string   "gender"
+    t.boolean  "searchable",                :default => true
+    t.integer  "person_id"
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+  end
+
+  add_index "profiles", ["first_name", "last_name", "searchable"], :name => "index_profiles_on_first_name_and_last_name_and_searchable"
+  add_index "profiles", ["first_name", "searchable"], :name => "index_profiles_on_first_name_and_searchable"
+  add_index "profiles", ["last_name", "searchable"], :name => "index_profiles_on_last_name_and_searchable"
+  add_index "profiles", ["person_id"], :name => "index_profiles_on_person_id"
+
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
@@ -44,8 +68,6 @@ ActiveRecord::Schema.define(:version => 20131028222205) do
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
 
   create_table "users", :force => true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
     t.string   "email"
     t.string   "password_digest"
     t.string   "remember_token"
@@ -57,8 +79,6 @@ ActiveRecord::Schema.define(:version => 20131028222205) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["first_name"], :name => "index_users_on_first_name"
-  add_index "users", ["last_name"], :name => "index_users_on_last_name"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
 end

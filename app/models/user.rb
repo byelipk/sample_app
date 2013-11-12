@@ -3,8 +3,6 @@
 # Table name: users
 #
 #  id              :integer          not null, primary key
-#  first_name      :string(255)
-#  last_name       :string(255)
 #  email           :string(255)
 #  password_digest :string(255)
 #  remember_token  :string(255)
@@ -16,10 +14,11 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation
+  attr_accessible :email, :password, :password_confirmation
   
   has_secure_password
 
+  has_one  :person, :foreign_key => :owner_id
   # -- Simple, many-to-one association set-up & instance methods
   has_many :microposts, dependent: :destroy
   has_many :email_verifications, dependent: :destroy
