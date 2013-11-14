@@ -19,13 +19,22 @@ class UsersController < ApplicationController
   def followers
     @title = 'followers'
     @user = User.find(params[:id])
-    @users = @user.followers.paginate(page: params[:page] )
+    @users = @user.followers.paginate( page: params[:page] )
     render 'show_follow'
   end
 
   def new
     redirect_to @current_user if signed_in?
-    @user = User.new(params[:user])
+    @user = User.new
+    @user.build_person.build_profile
+    if params.has_key?( :user )
+      persist_user_data( params[:user] )
+      if params[:user].has_key?(:profile_attributes)
+        persist_profile_data( params[:user][:profile_attributes] )
+      end
+    else
+      @user = User.new
+    end
   end
 
   def show
@@ -34,14 +43,16 @@ class UsersController < ApplicationController
   end
 
   def create
+
     redirect_to @current_user if signed_in?
    
-    whitelist = [ ENV["TESTER_1"], ENV["TESTER_2"], ENV["TESTER_3"] ]
+    whitelist      = [ ENV["TESTER_1"], ENV["TESTER_2"], ENV["TESTER_3"] ]
+    profile_params = params[:user].delete(:profile_attributes)
 
     @user = User.new(params[:user])
     if whitelist.include?(@user.email)
-      if @user.save
-        # Confirmation email sent
+      if @user.save && @user.create_person.create_profile( profile_params )
+        @user.send_confirmation_email
         session[:email] = @user.email
         redirect_to thank_you_url
       else
@@ -89,5 +100,20 @@ class UsersController < ApplicationController
 
     def admin_user
       redirect_to(root_url) unless current_user.admin?
+    end
+
+    def persist_user_data( user_params )
+      if user_params[:email]
+        user_email = { "email" => user_params[:email] }
+        @user = User.new( user_email )
+      else
+        @user = User.new
+      end
+    end
+
+    def persist_profile_data( profile_params )   
+      if profile_params[:first_name] && profile_params[:last_name]
+        @profile = @user.build_person.build_profile( profile_params )
+      end
     end
 end

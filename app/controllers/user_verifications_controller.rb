@@ -11,7 +11,7 @@ class UserVerificationsController < ApplicationController
 	def activate
 	    @user.activate      
 	    sign_in(@user)
-	    flash[:success] = "Welcome to kshizzy, #{@user.fullname}!"
+	    flash[:success] = "Welcome to kshizzy, #{@user.person.full_name}!"
 	    redirect_to root_url 
 	end
 
@@ -68,5 +68,4 @@ class UserVerificationsController < ApplicationController
     		redirect_to signup_url
     	end
     end
-
 end
