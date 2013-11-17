@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :get_profile_params, only: :create
+  before_filter :get_profile_attributes, only: :create
   before_filter :redirect_to_current_user, only: [:new, :create]
   before_filter :signed_in_user, only: [:index, :edit, :update, 
                                         :destroy, :following, :followers]
@@ -47,11 +47,11 @@ class UsersController < ApplicationController
 
     if whitelist.include?(params[:user][:email]) 
       @user = User.new( params[:user] )
-      @user.build_associations( @profile_params )
+      @user.build_associations( @profile_attrs )
       if @user.save
         # Confirmation email sent after user record is saved
         session[:email] = @user.email
-        redirect_to thank_you_url
+        redirect_to new_account_confirmation_url
       else
         render 'new'
       end
@@ -90,19 +90,19 @@ class UsersController < ApplicationController
 
   private
 
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
-    end
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_url) unless current_user?(@user)
+  end
 
-    def admin_user
-      redirect_to(root_url) unless current_user.admin?
-    end
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
+  end
 
-    def get_profile_params
-      if params[:user][:profile_attributes]
-        @profile_params = params[:user].delete(:profile_attributes)
-      end
+  def get_profile_attributes
+    if params[:user][:profile_attributes]
+      @profile_attrs = params[:user].delete(:profile_attributes)
     end
+  end
 
 end

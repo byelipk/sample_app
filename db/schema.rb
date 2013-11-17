@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131113155450) do
+ActiveRecord::Schema.define(:version => 20131117183750) do
 
   create_table "email_verifications", :force => true do |t|
     t.integer  "user_id"
@@ -71,11 +71,15 @@ ActiveRecord::Schema.define(:version => 20131113155450) do
     t.string   "email"
     t.string   "password_digest"
     t.string   "remember_token"
-    t.boolean  "admin",           :default => false
-    t.boolean  "active",          :default => false
-    t.boolean  "verified_email",  :default => false
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.boolean  "admin",                      :default => false
+    t.boolean  "active",                     :default => false
+    t.boolean  "verified_email",             :default => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
+    t.string   "confirmation_token"
+    t.datetime "confirmation_token_sent_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

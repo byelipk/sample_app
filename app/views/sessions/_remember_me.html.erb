@@ -1,0 +1,6 @@
+<div>
+    <%= form_tag sessions_path do %>
+        <%= label_tag :remember_me, "Remember me" %>
+        <%= check_box_tag :remember_me, 1, params[:remember_me] %>
+    <% end %>
+<div>

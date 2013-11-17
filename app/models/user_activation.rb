@@ -5,7 +5,7 @@ class UserActivation
 		@user = user
 	end
 
-	def activate
+	def activate_account
 		make_active
 		verify_email
 		@user.save(validate: false)
@@ -19,7 +19,7 @@ class UserActivation
     	@user.verified_email = true
     end
 
-    def activated?
+    def account_activated?
 	    @user.active?
     end
 end

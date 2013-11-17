@@ -2,15 +2,19 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  email           :string(255)
-#  password_digest :string(255)
-#  remember_token  :string(255)
-#  admin           :boolean          default(FALSE)
-#  active          :boolean          default(FALSE)
-#  verified_email  :boolean          default(FALSE)
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                         :integer          not null, primary key
+#  email                      :string(255)
+#  password_digest            :string(255)
+#  remember_token             :string(255)
+#  admin                      :boolean          default(FALSE)
+#  active                     :boolean          default(FALSE)
+#  verified_email             :boolean          default(FALSE)
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
+#  password_reset_token       :string(255)
+#  password_reset_sent_at     :datetime
+#  confirmation_token         :string(255)
+#  confirmation_token_sent_at :datetime
 #
 
 require 'spec_helper'

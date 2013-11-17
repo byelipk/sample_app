@@ -2,7 +2,7 @@ module SessionsHelper
 
   def sign_in(user)
     # Check if user account has been activated
-    if user.activated?
+    if user.account_activated?
       cookies.permanent[:remember_token] = user.remember_token
       # This syntax invokes current_user=(), thereby setting @current_user automagically :)
       self.current_user = user

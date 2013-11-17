@@ -2,15 +2,19 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  email           :string(255)
-#  password_digest :string(255)
-#  remember_token  :string(255)
-#  admin           :boolean          default(FALSE)
-#  active          :boolean          default(FALSE)
-#  verified_email  :boolean          default(FALSE)
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                         :integer          not null, primary key
+#  email                      :string(255)
+#  password_digest            :string(255)
+#  remember_token             :string(255)
+#  admin                      :boolean          default(FALSE)
+#  active                     :boolean          default(FALSE)
+#  verified_email             :boolean          default(FALSE)
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
+#  password_reset_token       :string(255)
+#  password_reset_sent_at     :datetime
+#  confirmation_token         :string(255)
+#  confirmation_token_sent_at :datetime
 #
 
 class User < ActiveRecord::Base
@@ -45,10 +49,10 @@ class User < ActiveRecord::Base
   before_save { email.downcase! }
   before_save :create_remember_token
   after_validation { self.errors.messages.delete(:password_digest) }
-  after_create :send_confirmation_email  
+  after_create :send_confirmation_request 
   
   # Delegations
-  delegate :activate, :activated?, :to => :user_activator
+  delegate :activate_account, :account_activated?, :to => :user_activator
 
   # -- Instance methods
 
@@ -77,14 +81,33 @@ class User < ActiveRecord::Base
     self.build_person.build_profile( profile_params )
   end
 
+  def send_password_reset
+    generate_token( :password_reset_token )
+    self.password_reset_sent_at = Time.zone.now
+    save( validate: false )
+    UserMailer.password_reset(self).deliver
+  end
+
+  def send_confirmation_request
+    generate_token( :confirmation_token )
+    self.confirmation_token_sent_at = Time.zone.now
+    save( validate: false )
+    UserMailer.account_confirmation(self).deliver
+  end
+
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column])
+  end
+
   private
 
-    def create_remember_token
-      self.remember_token = SecureRandom.urlsafe_base64
-    end
+  def create_remember_token
+    self.remember_token = SecureRandom.urlsafe_base64
+  end
 
-    def send_confirmation_email
-      self.email_verifications.create!
-    end
-
+  def send_confirmation_email
+    self.account_confirmation.create!
+  end
 end

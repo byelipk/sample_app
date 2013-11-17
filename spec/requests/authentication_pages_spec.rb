@@ -4,16 +4,16 @@ describe "Authentication process when we" do
 
     subject { page }
 
-    context "sign in to the application" do
+    before { visit signin_path }
 
-        before { visit signin_path }
+    context "sign in to the application" do
 
         describe "with invalid information" do
 
           before { click_button "Sign in" }
 
           it { should have_selector('title', text: 'Sign in') }
-          it { should have_selector('div.notice', text: 'Whoops') }
+          it { should have_selector('div.notice', text: 'Invalid') }
         end
 
         describe "after visiting another page" do
@@ -58,9 +58,34 @@ describe "Authentication process when we" do
                 it { should_not have_selector('title', text: user.person.full_name) } 
                 it { should_not have_link('Sign out', href: signout_path) }
 
-                it { should have_selector('title', text: "Account Activation") }
-                it { should have_selector('h3', text: "Activate your account") }
+                # it { should have_selector('title', text: "Account Activation") }
+                # it { should have_selector('h3', text: "Activate your account") }
             end
+        end
+    end
+
+    context "forget our password" do
+
+        before  { click_link "Forgot password?" }
+    
+        it { should have_selector( 'title', text: "Reset Password" )  }
+
+        describe "with a valid email" do
+            before do 
+                fill_in "email",  with: "byelipk@hotmail.com" 
+                click_button "Reset password"
+            end
+
+            it { should have_selector( 'div.alert.alert-notice' ) }
+        end
+
+        describe "with an invalid email" do
+            before do 
+                fill_in "email",  with: "not@allowed.com" 
+                click_button "Reset password"
+            end
+
+            it { should have_selector( 'div.alert.alert-notice' ) }
         end
     end
 end

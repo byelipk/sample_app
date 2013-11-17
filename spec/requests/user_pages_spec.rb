@@ -58,7 +58,7 @@ describe "UserPages" do
 
 	    	describe "after saving the user" do
 	    		before { click_button submit }
-	    		it { should have_selector('title', text: "Account Activation") }
+	    		it { should have_selector('title', text: "Account Confirmation") }
 	    	end
 	    end	
 

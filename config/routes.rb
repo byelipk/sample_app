@@ -9,12 +9,8 @@ SampleApp::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
-
-  match '/confirm/email/:id',   to: "user_verifications#verify",             via: 'get'
-  match '/activate_account',    to: "user_verifications#activate",           via: 'get'
-  match '/resend_activation',   to: 'user_verifications#resend',             via: 'post'
-  match '/thank_you',           to: 'user_verifications#thank_you',          via: 'get'
-  match '/resend_activation',   to: 'user_verifications#resend_activation',  via: 'get'
+  resources :password_resets, only: [:new, :create, :edit, :update]
+  resources :account_confirmations, only: [:new, :edit]
   
   match '/help',      to: 'static_pages#help'
   match '/about',     to: 'static_pages#about'
@@ -24,10 +20,6 @@ SampleApp::Application.routes.draw do
   match '/signup',    to: 'users#new',         via: 'post'
   match '/signin',    to: 'sessions#new',      via: 'get'
   match '/signout',   to: 'sessions#destroy',  via: 'delete'
-
-  
-
-
 
 
   # The priority is based upon order of creation:
@@ -88,32 +80,34 @@ SampleApp::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
 end
 #== Route Map
-# Generated on 16 Nov 2013 12:35
+# Generated on 17 Nov 2013 16:08
 #
-#    following_user GET    /users/:id/following(.:format) users#following
-#    followers_user GET    /users/:id/followers(.:format) users#followers
-#             users GET    /users(.:format)               users#index
-#                   POST   /users(.:format)               users#create
-#          new_user GET    /users/new(.:format)           users#new
-#         edit_user GET    /users/:id/edit(.:format)      users#edit
-#              user GET    /users/:id(.:format)           users#show
-#                   PUT    /users/:id(.:format)           users#update
-#                   DELETE /users/:id(.:format)           users#destroy
-#          sessions POST   /sessions(.:format)            sessions#create
-#       new_session GET    /sessions/new(.:format)        sessions#new
-#           session DELETE /sessions/:id(.:format)        sessions#destroy
-#        microposts POST   /microposts(.:format)          microposts#create
-#         micropost DELETE /microposts/:id(.:format)      microposts#destroy
-#     relationships POST   /relationships(.:format)       relationships#create
-#      relationship DELETE /relationships/:id(.:format)   relationships#destroy
-#                   GET    /confirm/email/:id(.:format)   user_verifications#verify
-#  activate_account GET    /activate_account(.:format)    user_verifications#activate
-# resend_activation POST   /resend_activation(.:format)   user_verifications#resend
-#         thank_you GET    /thank_you(.:format)           user_verifications#thank_you
-#                   GET    /resend_activation(.:format)   user_verifications#resend_activation
-#              help        /help(.:format)                static_pages#help
-#             about        /about(.:format)               static_pages#about
-#           contact        /contact(.:format)             static_pages#contact
-#            signup GET    /signup(.:format)              users#new
-#            signin GET    /signin(.:format)              sessions#new
-#           signout DELETE /signout(.:format)             sessions#destroy
+#            following_user GET    /users/:id/following(.:format)            users#following
+#            followers_user GET    /users/:id/followers(.:format)            users#followers
+#                     users GET    /users(.:format)                          users#index
+#                           POST   /users(.:format)                          users#create
+#                  new_user GET    /users/new(.:format)                      users#new
+#                 edit_user GET    /users/:id/edit(.:format)                 users#edit
+#                      user GET    /users/:id(.:format)                      users#show
+#                           PUT    /users/:id(.:format)                      users#update
+#                           DELETE /users/:id(.:format)                      users#destroy
+#                  sessions POST   /sessions(.:format)                       sessions#create
+#               new_session GET    /sessions/new(.:format)                   sessions#new
+#                   session DELETE /sessions/:id(.:format)                   sessions#destroy
+#                microposts POST   /microposts(.:format)                     microposts#create
+#                 micropost DELETE /microposts/:id(.:format)                 microposts#destroy
+#             relationships POST   /relationships(.:format)                  relationships#create
+#              relationship DELETE /relationships/:id(.:format)              relationships#destroy
+#           password_resets POST   /password_resets(.:format)                password_resets#create
+#        new_password_reset GET    /password_resets/new(.:format)            password_resets#new
+#       edit_password_reset GET    /password_resets/:id/edit(.:format)       password_resets#edit
+#            password_reset PUT    /password_resets/:id(.:format)            password_resets#update
+#  new_account_confirmation GET    /account_confirmations/new(.:format)      account_confirmations#new
+# edit_account_confirmation GET    /account_confirmations/:id/edit(.:format) account_confirmations#edit
+#                      help        /help(.:format)                           static_pages#help
+#                     about        /about(.:format)                          static_pages#about
+#                   contact        /contact(.:format)                        static_pages#contact
+#                    signup GET    /signup(.:format)                         users#new
+#                           POST   /signup(.:format)                         users#new
+#                    signin GET    /signin(.:format)                         sessions#new
+#                   signout DELETE /signout(.:format)                        sessions#destroy
