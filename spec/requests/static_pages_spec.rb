@@ -37,25 +37,25 @@ describe "StaticPages" do
 		it { should have_selector('title', text: full_title('Contact')) }
 	end
 
-  it "should have the right links on the layout" do
-    visit root_path
-    click_link "About"
-    page.should have_selector 'title', text: full_title('About Us')
-    click_link "Help"
-    page.should have_selector 'title', text: full_title('Help')
-    click_link "Contact"
-    page.should have_selector 'title', text: full_title('Contact')
-    # click_link "Privacy"
-    # page.should have_selector 'title', text: full_title('Privacy')
-    # click_link "Blog"
-    # page.should have_selector 'title', text: full_title('Blog')
-    # click_link "Jobs"
-    # page.should have_selector 'title', text: full_title('Jobs')
-    # click_link "Dev"
-    # page.should have_selector 'title', text: full_title('Development') 
-    # click_link "Terms"
-    # page.should have_selector 'title', text: full_title('Terms & Conditions')
-    # click_link "News"
-    # page.should have_selector 'title', text: full_title('News')               
-  end	
+	it "should have the right links on the layout" do
+	    visit root_path
+	    click_link "About"
+	    page.should have_selector 'title', text: full_title('About Us')
+	    click_link "Help"
+	    page.should have_selector 'title', text: full_title('Help')
+	    click_link "Contact"
+	    page.should have_selector 'title', text: full_title('Contact')
+	    # click_link "Privacy"
+	    # page.should have_selector 'title', text: full_title('Privacy')
+	    # click_link "Blog"
+	    # page.should have_selector 'title', text: full_title('Blog')
+	    # click_link "Jobs"
+	    # page.should have_selector 'title', text: full_title('Jobs')
+	    # click_link "Dev"
+	    # page.should have_selector 'title', text: full_title('Development') 
+	    # click_link "Terms"
+	    # page.should have_selector 'title', text: full_title('Terms & Conditions')
+	    # click_link "News"
+	    # page.should have_selector 'title', text: full_title('News')               
+	end	
 end

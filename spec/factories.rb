@@ -1,11 +1,19 @@
 FactoryGirl.define do
-  factory :user do
-    first_name  			"Pat"
-    last_name				"White"
-    email    				"example@railstutorial.org"
-    password 				"foobar"
-    password_confirmation 	"foobar"
-    active                  false
-    verified_email          false
-  end
+
+	# Notice how we're creating the associations...
+	factory :user do
+	    email    				"example@railstutorial.org"
+	    password 				"foobar"
+	    password_confirmation 	"foobar"
+	    person
+	end
+
+	factory :person do
+	  	profile
+	end  
+
+	factory :profile do
+	  	first_name     "Marko"
+	  	last_name      "Polo"
+	end
 end

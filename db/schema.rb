@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131114011208) do
+ActiveRecord::Schema.define(:version => 20131113155450) do
 
   create_table "email_verifications", :force => true do |t|
     t.integer  "user_id"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(:version => 20131114011208) do
     t.datetime "updated_at", :null => false
   end
 
-  add_index "people", ["user_id"], :name => "index_people_on_owner_id", :unique => true
+  add_index "people", ["user_id"], :name => "index_people_on_user_id", :unique => true
 
   create_table "profiles", :force => true do |t|
     t.string   "first_name", :limit => 127

@@ -4,11 +4,11 @@ class ModifyUserAddPersonAddProfileModels < ActiveRecord::Migration
   	remove_column :users, :last_name
   	
   	create_table :people do |t|
-      t.integer :owner_id
+      t.integer :user_id
       t.timestamps
   	end
 
-  	add_index :people, :owner_id, :unique => true
+  	add_index :people, :user_id, :unique => true
 
   	create_table :profiles do |t|
       t.string :first_name, :limit => 127

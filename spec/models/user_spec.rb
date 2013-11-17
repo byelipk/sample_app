@@ -16,42 +16,27 @@
 require 'spec_helper'
 
 describe User do
-  before { @user = User.new(first_name: "Example", last_name: "User", email: "example@user.com",
-                              password: "foobar", password_confirmation: "foobar") }
+  before do 
+    @user = User.new(email: "example@user.com", password: "foobar", password_confirmation: "foobar")
+    @user.build_person.build_profile( first_name: "Pat", last_name: "White" )
+  end
+
   subject { @user }
 
-  it { should respond_to(:first_name) }
-  it { should respond_to(:last_name) }
   it { should respond_to(:email) }
   it { should respond_to(:password_digest) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
+  it { should respond_to(:person) }
+  it { should respond_to(:profile) }
 
   it { should be_valid }
-
-  context "when first name is not present" do
-  	before { @user.first_name = "" }
-
-  	it { should_not be_valid }
-  end
-
-  context "when last name is not present" do
-    before { @user.last_name = "" }
-
-    it { should_not be_valid }
-  end
 
   context "when email is not present" do
   	before { @user.email = "" }
   	
-  	it { should_not be_valid }
-  end
-
-  context "when name is too long" do
-  	before { @user.first_name = "a" * 51 }
-
   	it { should_not be_valid }
   end
 
@@ -80,6 +65,7 @@ describe User do
   context "when email is already taken" do
   	before do
   		user_with_same_email = @user.dup
+      user_with_same_email.build_person.build_profile( first_name: "Pat", last_name: "White" )
   		user_with_same_email.email = @user.email.upcase
   		user_with_same_email.save
   	end

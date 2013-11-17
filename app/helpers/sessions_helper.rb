@@ -54,4 +54,8 @@ module SessionsHelper
     session[:return_to] = request.url
   end
 
+  def redirect_to_current_user 
+    redirect_to @current_user if signed_in?
+  end
+
 end

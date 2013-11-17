@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'ruby-debug'
 
 describe "UserPages" do
 
@@ -14,9 +15,10 @@ describe "UserPages" do
 	
 	describe "profile page" do
 		let(:user) { FactoryGirl.create(:user) }
+
 		before { visit user_path(user) }
 
-		it { should have_selector('title',  text: user.fullname) }
+		it { should have_selector('title',  text: user.person.full_name) }
 	end
 
 	describe "sign-up process" do
@@ -43,32 +45,32 @@ describe "UserPages" do
 	    context "with valid information" do
 			
 			before do
-				fill_in "user_first_name",     			with: "Marko"
-				fill_in "user_last_name",      			with: "Polo"
-				fill_in "user_email",          			with: "byelipk@hotmail.com"
-				fill_in "user_password",       			with: "foobar"
-				fill_in "user_password_confirmation",   with: "foobar"				
+				fill_in "user_profile_attributes_first_name",     with: "Marko"
+				fill_in "user_profile_attributes_last_name",      with: "Polo"
+				fill_in "user_email",         					  with: "byelipk@hotmail.com"
+				fill_in "user_password",       					  with: "foobar"
+				fill_in "user_password_confirmation",			  with: "foobar"			
 			end	        
 
 	    	it "should create a new user" do
-	    		expect { click_button submit }.to change(User, :count).by(1)    		
+	    		expect { click_button submit }.to change(User, :count).by(1) 		
 	    	end
-
 
 	    	describe "after saving the user" do
 	    		before { click_button submit }
-	    		
 	    		it { should have_selector('title', text: "Account Activation") }
 	    	end
 	    end	
 
+	    # As we move closer to a public beta this will need to be changed
 	    context "without a white-listed email" do
 			
 			before do
-				fill_in "user_first_name",     with: "Marko"
-				fill_in "user_last_name",      with: "Polo"
-				fill_in "user_email",          with: "not_allowed@should_not_work.com"
-				fill_in "user_password",       with: "foobar"				
+				fill_in "user_profile_attributes_first_name",     with: "Marko"
+				fill_in "user_profile_attributes_last_name",      with: "Polo"
+				fill_in "user_email",         					  with: "not@allowed.com"
+				fill_in "user_password",       					  with: "foobar"
+				fill_in "user_password_confirmation",			  with: "foobar"	
 			end	        
 
 	    	it "should not create a new user" do

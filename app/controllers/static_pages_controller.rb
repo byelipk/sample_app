@@ -6,7 +6,7 @@ class StaticPagesController < ApplicationController
   		@feed_items = current_user.feed.paginate(page: params[:page])
     else
       @user = User.new
-      
+      @profile = @user.build_person.build_profile
   	end 
   end
 

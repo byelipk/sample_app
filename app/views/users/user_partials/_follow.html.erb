@@ -1,0 +1,13 @@
+<!-- 
+	The form_for() requires a model object to be passed in
+	 in order to bind the form to the object. 
+
+	 In this case, the object we're binding to the form is an empty
+	 Relationship object, to which we pass @user.id because current_user wants to 
+	 build a "following" association with this user.  
+	 												-->
+<%= form_for(current_user.relationships.build(followed_id: @user.id), 
+											remote: true ) do |f| %>
+  <div><%= f.hidden_field :followed_id %></div>
+  <%= f.submit "Follow", class: "btn btn-large btn-primary" %>
+<% end %>

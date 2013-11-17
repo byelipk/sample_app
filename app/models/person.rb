@@ -9,12 +9,11 @@
 #
 
 class Person < ActiveRecord::Base
-	
+
 	has_one :profile, :dependent => :destroy
 
 	delegate :first_name, :last_name, :full_name, to: :profile
 	accepts_nested_attributes_for :profile
 
 	belongs_to :user
-
 end

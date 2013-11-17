@@ -21,6 +21,7 @@ SampleApp::Application.routes.draw do
   match '/contact',   to: 'static_pages#contact'
   
   match '/signup',    to: 'users#new',         via: 'get'
+  match '/signup',    to: 'users#new',         via: 'post'
   match '/signin',    to: 'sessions#new',      via: 'get'
   match '/signout',   to: 'sessions#destroy',  via: 'delete'
 
@@ -87,7 +88,7 @@ SampleApp::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
 end
 #== Route Map
-# Generated on 07 Nov 2013 16:31
+# Generated on 16 Nov 2013 12:35
 #
 #    following_user GET    /users/:id/following(.:format) users#following
 #    followers_user GET    /users/:id/followers(.:format) users#followers

@@ -12,8 +12,8 @@
     <div class="sign-up-form-container">
         <%= form_for( @user ) do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
-            <%= render 'fields', f: f %>
-            <%= render 'submit_button', f: f %>
+            <%= render 'users/user_partials/fields', f: f %>
+            <%= render 'users/user_partials/submit_button', f: f %>
         <% end %> 
     </div>    
 </section>

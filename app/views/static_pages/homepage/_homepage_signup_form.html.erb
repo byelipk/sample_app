@@ -1,21 +1,17 @@
 <div class="well signup-form">
 	<h4>New to Kshizzy? Sign up.</h4>
-	<!--  -->
-	<%= form_for( [:user, @user], url: signup_path, method: 'get' ) do |f| %>
-
-		<%= f.fields_for :profile, Profile.new do |ff| %>
-			<div class="row-fluid">
+	<%= form_for( @user, url: signup_path, method: 'post' ) do |f| %>		
+		<%= f.fields_for( :profile, @profile ) do |ff| %>
+			<div class="row-fluid">	
 				<%= ff.text_field :first_name, 
-						placeholder: "First Name",
-						class: "span6" %>
+								    placeholder: "First Name", 
+									class: "span6" %>
 				<%= ff.text_field :last_name, 
-						placeholder: "Last Name", 
-						class: "span6" %>			
-			</div>
-		<% end %>
-
+									placeholder: "Last Name", 
+									class: "span6" %>	
+			</div>		
+		<% end %>		
 		<%= f.text_field :email, placeholder: "Email" %>
-		
 		<%= f.submit "Sign up for Kshizzy", 
 						class: "btn btn-large btn-warning", 
 						style: "float:right" %>

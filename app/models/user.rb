@@ -19,8 +19,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_one :person, :dependent => :destroy
-  
-  has_one :profile, :through => :person
+  has_one :profile, :through => :person, :dependent => :destroy
   accepts_nested_attributes_for :profile
 
   # -- Simple, many-to-one association set-up & instance methods
@@ -45,7 +44,8 @@ class User < ActiveRecord::Base
   # -- Callbacks
   before_save { email.downcase! }
   before_save :create_remember_token
-  after_validation { self.errors.messages.delete(:password_digest) }  
+  after_validation { self.errors.messages.delete(:password_digest) }
+  after_create :send_confirmation_email  
   
   # Delegations
   delegate :activate, :activated?, :to => :user_activator
@@ -73,12 +73,18 @@ class User < ActiveRecord::Base
     UserActivation.new(self)
   end
 
-  def send_confirmation_email
-    self.email_verifications.create!
+  def build_associations( profile_params )
+    self.build_person.build_profile( profile_params )
   end
-    
+
   private
+
     def create_remember_token
       self.remember_token = SecureRandom.urlsafe_base64
     end
+
+    def send_confirmation_email
+      self.email_verifications.create!
+    end
+
 end

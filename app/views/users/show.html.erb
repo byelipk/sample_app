@@ -1,10 +1,10 @@
-<% provide(:title, @user.fullname) %>
+<% provide(:title, @user.person.full_name) %>
 <div class="row">
 	<aside class="span4">
 		<section>
 			<h1>
 				<%= gravatar_for(@user) %>
-				<%= @user.fullname %>
+				<%= @user.person.full_name %>
 			</h1>
 		</section>
 		<section>
@@ -28,7 +28,7 @@
 				<li>Collaborate together on homework and projects, or just get together to talk about the issues that matter to you.</li>
 			</ol>
 		<% else %>
-			<%= "Add #{@user.fullname} to your team!" %>
+			<%= "Add #{@user.person.full_name} to your team!" %>
 		<% end %>
 
 	</section>

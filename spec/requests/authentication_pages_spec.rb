@@ -38,7 +38,7 @@ describe "Authentication process when we" do
                 
                 it { should_not have_link("Sign in", href: signin_path) }
                 
-                it { should have_selector('title', text: user.fullname) } 
+                it { should have_selector('title', text: user.person.full_name) } 
                 it { should have_link('Sign out', href: signout_path) }
                 
                 describe "followed by signout" do
@@ -55,7 +55,7 @@ describe "Authentication process when we" do
                     click_button "Sign in"
                 end
 
-                it { should_not have_selector('title', text: user.fullname) } 
+                it { should_not have_selector('title', text: user.person.full_name) } 
                 it { should_not have_link('Sign out', href: signout_path) }
 
                 it { should have_selector('title', text: "Account Activation") }
