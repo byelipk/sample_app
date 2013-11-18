@@ -18,7 +18,8 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation, :profile_attributes
+
+  #attr_accessible :email, :password, :password_confirmation, :profile_attributes
   
   has_secure_password
 

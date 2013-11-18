@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
 
-  before_filter :get_profile_attributes, only: :create
   before_filter :redirect_to_current_user, only: [:new, :create]
   before_filter :signed_in_user, only: [:index, :edit, :update, 
                                         :destroy, :following, :followers]
@@ -26,14 +25,8 @@ class UsersController < ApplicationController
   end
 
   def new 
-    @user = User.new
-    @profile = @user.build_person.build_profile
-    # if params[:user][:profile_attributes]
-    #   profile_params = params[:user].delete( :profile_attributes )
-    #   @user = User.new(params[:user])
-    #   @profile = @user.build_person.build_profile( profile_params )
-    # else
-    # end   
+    @user = User.new(user_params)
+    @profile = @user.build_person.build_profile(profile_params)  
   end
 
   def show
@@ -43,11 +36,11 @@ class UsersController < ApplicationController
 
   def create
     whitelist = [ ENV["TESTER_1"], ENV["TESTER_2"], ENV["TESTER_3"], 
-                  ENV["TESTER_4"], ENV["TESTER_5"] ]
+                  ENV["TESTER_4"] ]
 
     if whitelist.include?(params[:user][:email]) 
-      @user = User.new( params[:user] )
-      @user.build_associations( @profile_attrs )
+      @user = User.new( user_params )
+      @user.build_associations( profile_params )
       if @user.save
         # Confirmation email sent after user record is saved
         session[:email] = @user.email
@@ -67,13 +60,13 @@ class UsersController < ApplicationController
 
   def update
     # -- @user defined in before_filter
-    if @user.update_attributes(params[:user])
-      flash.now[:success] = "Changes to your profile have been saved!"
-      sign_in @user
-      redirect_to @user
-    else
-      render 'edit'
-    end
+    # if @user.update_attributes(params[:user].permit())
+    #   flash.now[:success] = "Changes to your profile have been saved!"
+    #   sign_in @user
+    #   redirect_to @user
+    # else
+    #   render 'edit'
+    # end
   end
 
   def destroy
@@ -99,10 +92,12 @@ class UsersController < ApplicationController
     redirect_to(root_url) unless current_user.admin?
   end
 
-  def get_profile_attributes
-    if params[:user][:profile_attributes]
-      @profile_attrs = params[:user].delete(:profile_attributes)
-    end
+  def user_params
+    params[:user].permit( :email, :password, :password_confirmation )
+  end
+
+  def profile_params
+    params[:user][:profile_attributes].permit(:first_name, :last_name)
   end
 
 end
