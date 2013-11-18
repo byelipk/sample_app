@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131117183750) do
+ActiveRecord::Schema.define(:version => 20131118144341) do
 
   create_table "email_verifications", :force => true do |t|
     t.integer  "user_id"
@@ -55,6 +55,9 @@ ActiveRecord::Schema.define(:version => 20131117183750) do
   add_index "profiles", ["first_name", "searchable"], :name => "index_profiles_on_first_name_and_searchable"
   add_index "profiles", ["last_name", "searchable"], :name => "index_profiles_on_last_name_and_searchable"
   add_index "profiles", ["person_id"], :name => "index_profiles_on_person_id"
+
+# Could not dump table "queue_classic_jobs" because of following StandardError
+#   Unknown type 'json' for column 'args'
 
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"
