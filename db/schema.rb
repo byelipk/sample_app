@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131118144341) do
+ActiveRecord::Schema.define(:version => 20131120172344) do
 
   create_table "email_verifications", :force => true do |t|
     t.integer  "user_id"
@@ -22,15 +22,6 @@ ActiveRecord::Schema.define(:version => 20131118144341) do
   end
 
   add_index "email_verifications", ["code"], :name => "index_email_verifications_on_code"
-
-  create_table "microposts", :force => true do |t|
-    t.string   "content"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "microposts", ["user_id", "created_at"], :name => "index_microposts_on_user_id_and_created_at"
 
   create_table "people", :force => true do |t|
     t.integer  "user_id"
@@ -55,20 +46,6 @@ ActiveRecord::Schema.define(:version => 20131118144341) do
   add_index "profiles", ["first_name", "searchable"], :name => "index_profiles_on_first_name_and_searchable"
   add_index "profiles", ["last_name", "searchable"], :name => "index_profiles_on_last_name_and_searchable"
   add_index "profiles", ["person_id"], :name => "index_profiles_on_person_id"
-
-# Could not dump table "queue_classic_jobs" because of following StandardError
-#   Unknown type 'json' for column 'args'
-
-  create_table "relationships", :force => true do |t|
-    t.integer  "follower_id"
-    t.integer  "followed_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"
-  add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id", :unique => true
-  add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
 
   create_table "users", :force => true do |t|
     t.string   "email"

@@ -25,17 +25,7 @@ class User < ActiveRecord::Base
 
   has_one :person, :dependent => :destroy
   has_one :profile, :through => :person, :dependent => :destroy
-  accepts_nested_attributes_for :profile
-
-  # -- Simple, many-to-one association set-up & instance methods
-  has_many :microposts, dependent: :destroy
-  # -- Complex, many-to-many association set-up & instance methods
-  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
-  has_many :followed_users, through: :relationships, source: :followed
-  has_many :reverse_relationships, foreign_key: "followed_id",
-                                   class_name:  "Relationship",
-                                   dependent:   :destroy
-  has_many :followers, through: :reverse_relationships, source: :follower                               
+  accepts_nested_attributes_for :profile                              
 
   # -- Validations
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -55,24 +45,7 @@ class User < ActiveRecord::Base
   delegate :activate_account, :account_activated?, :to => :user_activator
 
   # -- Instance methods
-
-  def feed
-    Micropost.from_users_followed_by(self) 
-  end
-
-  def follow!(other_user)
-    # follower_id is self.id
-    self.relationships.create!(followed_id: other_user.id)
-  end
-
-  def following?(other_user)
-    self.relationships.find_by_followed_id(other_user.id)
-  end
-
-  def unfollow!(other_user)
-    self.relationships.find_by_followed_id(other_user.id).destroy
-  end
-
+  
   def user_activator
     UserActivation.new(self)
   end
