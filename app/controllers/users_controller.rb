@@ -1,8 +1,11 @@
 class UsersController < ApplicationController
 
+  # SessionsHelper methods
   before_filter :redirect_to_current_user, only: [:new, :create]
   before_filter :signed_in_user, only: [:index, :edit, :update, 
                                         :destroy, :following, :followers]
+  # Private methods
+  before_filter :create_signup_params, only: :new
   before_filter :correct_user, only: [:edit, :update]
   before_filter :admin_user, only: :destroy
 
@@ -10,28 +13,13 @@ class UsersController < ApplicationController
     @users = User.paginate(page: params[:page] )
   end
 
-  def following
-    @title  = "following"
-    @user   = User.find(params[:id])
-    @users  = @user.followed_users.paginate(page: params[:page] )
-    render 'show_follow'
-  end
-
-  def followers
-    @title  = 'followers'
-    @user   = User.find(params[:id])
-    @users  = @user.followers.paginate(page: params[:page] )
-    render 'show_follow'
-  end
-
   def new 
     @user = User.new(user_params)
-    @profile = @user.build_person.build_profile(profile_params)  
+    @profile = @user.build_associations(profile_params)  
   end
 
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page]) 
   end
 
   def create
@@ -42,7 +30,6 @@ class UsersController < ApplicationController
       @user = User.new( user_params )
       @user.build_associations( profile_params )
       if @user.save
-        # Confirmation email sent after user record is saved
         session[:email] = @user.email
         redirect_to new_account_confirmation_url
       else
@@ -98,6 +85,13 @@ class UsersController < ApplicationController
 
   def profile_params
     params[:user][:profile_attributes].permit(:first_name, :last_name)
+  end
+
+  def create_signup_params
+    if !params[:user]
+      params[:user] = {profile_attributes: {first_name: "", last_name: ""}, 
+                      email: "", password: "", password_confirmation: ""}
+    end
   end
 
 end

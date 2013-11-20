@@ -19,15 +19,17 @@
 
 class User < ActiveRecord::Base
 
-  #attr_accessible :email, :password, :password_confirmation, :profile_attributes
+  # We currently upgraded to using strong-parameters 
+  # - a core feature of Rails 4 - so we don't need to use attr_accessible
   
   has_secure_password
 
+  # -- ASSOCIATIONS
   has_one :person, :dependent => :destroy
   has_one :profile, :through => :person, :dependent => :destroy
   accepts_nested_attributes_for :profile                              
 
-  # -- Validations
+  # -- VALIDATIONS
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence:   true,
                     format:     { with: VALID_EMAIL_REGEX },
@@ -35,22 +37,22 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
   
-  # -- Callbacks
+  # -- CALLBACKS
   before_save { email.downcase! }
   before_save :create_remember_token
   after_validation { self.errors.messages.delete(:password_digest) }
   after_create :send_confirmation_request 
   
-  # Delegations
-  delegate :activate_account, :account_activated?, :to => :user_activator
+  # -- DELEGATIONS
+  delegate :activate_account, :account_activated?, :to => :account_activator
 
-  # -- Instance methods
+  # -- INSTANCE METHODS
   
-  def user_activator
+  def account_activator
     UserActivation.new(self)
   end
 
-  def build_associations( profile_params )
+  def build_associations( profile_params={} )
     self.build_person.build_profile( profile_params )
   end
 
@@ -74,13 +76,12 @@ class User < ActiveRecord::Base
     end while User.exists?(column => self[column])
   end
 
+  # -- PRIVATE METHODS
+  
   private
 
   def create_remember_token
     self.remember_token = SecureRandom.urlsafe_base64
   end
 
-  def send_confirmation_email
-    self.account_confirmation.create!
-  end
 end

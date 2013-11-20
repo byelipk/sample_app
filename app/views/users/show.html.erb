@@ -8,28 +8,12 @@
 			</h1>
 		</section>
 		<section>
-			<%= render 'shared/stats' %>
+			<!-- Placeholder -->
 		</section>
 	</aside>
 
 	<section class="span8">
-		<%= render 'follow_form' if signed_in? %>
-		<% if @user.microposts.any? %>
-		    </ul>			
-			<h3>Recent Ramblings ( <%= @user.microposts.count %> )</h3>	
-				<ol class="microposts">
-					<%= render @microposts %>
-				</ol>
-			<%= will_paginate @microposts %>
-		<% elsif @user == current_user %>
-			<ol>
-				<li>Search for your friends, classmates, professors, employers, colleagues, and anyone else who can add a little sugar to your experience, or some spice!</li>
-				<li>Join and create conversations.</li>
-				<li>Collaborate together on homework and projects, or just get together to talk about the issues that matter to you.</li>
-			</ol>
-		<% else %>
-			<%= "Add #{@user.person.full_name} to your team!" %>
-		<% end %>
+	<!-- Placeholder -->
 
 	</section>
 </div>

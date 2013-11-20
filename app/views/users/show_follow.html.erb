@@ -4,9 +4,9 @@
     
     <section>
       <%= gravatar_for @user %>
-      <h1><%= @user.name %></h1>
+      <h1><%= @user.person.full_name %></h1>
       <span><%= link_to "view my profile", @user %></span>
-      <span><b>Microposts:</b> <%= @user.microposts.count %></span>
+      <!-- <span><b>Microposts:</b> <%= @user.microposts.count %></span> -->
     </section>
     
     <section>
