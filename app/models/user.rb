@@ -19,7 +19,7 @@
 
 class User < ActiveRecord::Base
 
-  # We currently upgraded to using strong-parameters 
+  # We upgraded to using strong-parameters 
   # - a core feature of Rails 4 - so we don't need to use attr_accessible
   
   has_secure_password
