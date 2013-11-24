@@ -75,7 +75,7 @@ SampleApp::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
 end
 #== Route Map
-# Generated on 23 Nov 2013 17:09
+# Generated on 24 Nov 2013 10:49
 #
 #                     users GET    /users(.:format)                          users#index
 #                           POST   /users(.:format)                          users#create
@@ -98,7 +98,7 @@ end
 #                      help        /help(.:format)                           static_pages#help
 #                     about        /about(.:format)                          static_pages#about
 #                   contact        /contact(.:format)                        static_pages#contact
-#                    signup GET    /signup(.:format)                         signup_form#new
-#                           POST   /signup(.:format)                         signup_form#new
+#                    signup GET    /signup(.:format)                         users#new
+#                           POST   /signup(.:format)                         users#new
 #                    signin GET    /signin(.:format)                         sessions#new
 #                   signout DELETE /signout(.:format)                        sessions#destroy
