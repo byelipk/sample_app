@@ -1,18 +1,16 @@
 <%# We render this by explicity passing in f: render 'fields', f: f %>
-<%= f.fields_for( :profile, @profile ) do |ff| %>
-	<p>
-		<div class="row-fluid">
-			<div class="span6">
-				<%= ff.label :first_name, "Your first name" %>
-				<%= ff.text_field :first_name %>
-			</div>
-			<div class="span6">
-				<%= ff.label :last_name, "Your last name" %>
-				<%= ff.text_field :last_name %>
-			</div>
+<p>
+	<div class="row-fluid">
+		<div class="span6">
+			<%= f.label :first_name, "Your first name" %>
+			<%= f.text_field :first_name %>
 		</div>
-	</p>
-<% end %>
+		<div class="span6">
+			<%= f.label :last_name, "Your last name" %>
+			<%= f.text_field :last_name %>
+		</div>
+	</div>
+</p>
 
 <p>
 	<%= f.label :email, "Your email address" %>

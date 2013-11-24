@@ -45,11 +45,11 @@ describe "UserPages" do
 	    context "with valid information" do
 			
 			before do
-				fill_in "user_profile_attributes_first_name",     with: "Marko"
-				fill_in "user_profile_attributes_last_name",      with: "Polo"
-				fill_in "user_email",         					  with: "byelipk@hotmail.com"
-				fill_in "user_password",       					  with: "foobar"
-				fill_in "user_password_confirmation",			  with: "foobar"			
+				fill_in "user_first_name",     			with: "Marko"
+				fill_in "user_last_name",      			with: "Polo"
+				fill_in "user_email",         		    with: "byelipk@hotmail.com"
+				fill_in "user_password",       			with: "foobar"
+				fill_in "user_password_confirmation",	with: "foobar"			
 			end	        
 
 	    	it "should create a new user" do
@@ -66,11 +66,11 @@ describe "UserPages" do
 	    context "without a white-listed email" do
 			
 			before do
-				fill_in "user_profile_attributes_first_name",     with: "Marko"
-				fill_in "user_profile_attributes_last_name",      with: "Polo"
-				fill_in "user_email",         					  with: "not@allowed.com"
-				fill_in "user_password",       					  with: "foobar"
-				fill_in "user_password_confirmation",			  with: "foobar"	
+				fill_in "user_first_name",     			with: "Marko"
+				fill_in "user_last_name",      			with: "Polo"
+				fill_in "user_email",         		    with: "not@allowed.com"
+				fill_in "user_password",       			with: "foobar"
+				fill_in "user_password_confirmation",	with: "foobar"	
 			end	        
 
 	    	it "should not create a new user" do

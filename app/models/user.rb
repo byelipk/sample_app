@@ -26,8 +26,7 @@ class User < ActiveRecord::Base
 
   # -- ASSOCIATIONS
   has_one :person, :dependent => :destroy
-  has_one :profile, :through => :person, :dependent => :destroy
-  accepts_nested_attributes_for :profile                              
+  has_one :profile, :through => :person                            
 
   # -- VALIDATIONS
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

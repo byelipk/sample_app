@@ -10,7 +10,7 @@
         <span class="link-to-sign-in"><%= link_to "Sign in", signin_path %></span>
     </div>   
     <div class="sign-up-form-container">
-        <%= form_for( @user ) do |f| %>
+        <%= form_for( @signup_form, url: users_path ) do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
             <%= render 'users/user_partials/fields', f: f %>
             <%= render 'users/user_partials/submit_button', f: f %>

@@ -3,19 +3,21 @@ class UsersController < ApplicationController
   # SessionsHelper methods
   before_filter :redirect_to_current_user, only: [:new, :create]
   before_filter :signed_in_user, only: [:index, :edit, :update, 
-                                        :destroy, :following, :followers]
+                                        :destroy]
   # Private methods
-  before_filter :create_signup_params, only: :new
+  before_filter :prepare_user_params, only: :new
   before_filter :correct_user, only: [:edit, :update]
   before_filter :admin_user, only: :destroy
+
+  # Only for the early development phase
+  before_filter :whitelist, only: :create
 
   def index
     @users = User.paginate(page: params[:page] )
   end
 
-  def new 
-    @user = User.new(user_params)
-    @profile = @user.build_associations(profile_params)  
+  def new
+    @signup_form = SignupForm.new(user_params, profile_params)
   end
 
   def show
@@ -23,14 +25,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    whitelist = [ ENV["TESTER_1"], ENV["TESTER_2"], ENV["TESTER_3"], 
-                  ENV["TESTER_4"] ]
-
-    if whitelist.include?(params[:user][:email]) 
-      @user = User.new( user_params )
-      @user.build_associations( profile_params )
-      if @user.save
-        session[:email] = @user.email
+    if whitelist.include?(params[:user][:email])
+      @signup_form = SignupForm.new 
+      if @signup_form.submit(user_params, profile_params)
+        session[:email] = @signup_form.email
         redirect_to new_account_confirmation_url
       else
         render 'new'
@@ -79,19 +77,23 @@ class UsersController < ApplicationController
     redirect_to(root_url) unless current_user.admin?
   end
 
-  def user_params
-    params[:user].permit( :email, :password, :password_confirmation )
-  end
-
   def profile_params
-    params[:user][:profile_attributes].permit(:first_name, :last_name)
+    params[:user].permit(:first_name, :last_name)
   end
 
-  def create_signup_params
-    if !params[:user]
-      params[:user] = {profile_attributes: {first_name: "", last_name: ""}, 
-                      email: "", password: "", password_confirmation: ""}
+  def user_params
+    params[:user].permit(:email, :password, :password_confirmation)
+  end  
+
+  def prepare_user_params
+    unless params[:user]
+      params[:user] = { first_name: "", last_name: "", email: "", 
+        password: "", password_confirmation: "" }
     end
-  end
+  end  
 
+  # Only for the early development phase
+  def whitelist
+    whitelist = [ ENV["TESTER_1"], ENV["TESTER_2"], ENV["TESTER_3"], ENV["TESTER_4"] ]
+  end
 end

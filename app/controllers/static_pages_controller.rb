@@ -1,11 +1,8 @@
 class StaticPagesController < ApplicationController
 
   def home 
-  	if signed_in?
-  		
-    else
-      @user = User.new
-      @profile = @user.build_associations
+  	unless signed_in?
+      @static_page_forms = StaticPageForms.new
   	end 
   end
 
@@ -17,5 +14,5 @@ class StaticPagesController < ApplicationController
 
   def contact
   end
-
+    
 end

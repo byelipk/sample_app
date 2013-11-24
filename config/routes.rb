@@ -1,16 +1,11 @@
 SampleApp::Application.routes.draw do
   root to: "static_pages#home"
 
-  resources :users do
-    member do
-      get :following, :followers
-    end
-  end
+  resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :microposts, only: [:create, :destroy]
-  resources :relationships, only: [:create, :destroy]
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :account_confirmations, only: [:new, :edit]
+  resources :signup_form, only: [:new, :create]
   
   match '/help',      to: 'static_pages#help'
   match '/about',     to: 'static_pages#about'
@@ -80,10 +75,8 @@ SampleApp::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
 end
 #== Route Map
-# Generated on 17 Nov 2013 16:08
+# Generated on 23 Nov 2013 17:09
 #
-#            following_user GET    /users/:id/following(.:format)            users#following
-#            followers_user GET    /users/:id/followers(.:format)            users#followers
 #                     users GET    /users(.:format)                          users#index
 #                           POST   /users(.:format)                          users#create
 #                  new_user GET    /users/new(.:format)                      users#new
@@ -94,20 +87,18 @@ end
 #                  sessions POST   /sessions(.:format)                       sessions#create
 #               new_session GET    /sessions/new(.:format)                   sessions#new
 #                   session DELETE /sessions/:id(.:format)                   sessions#destroy
-#                microposts POST   /microposts(.:format)                     microposts#create
-#                 micropost DELETE /microposts/:id(.:format)                 microposts#destroy
-#             relationships POST   /relationships(.:format)                  relationships#create
-#              relationship DELETE /relationships/:id(.:format)              relationships#destroy
 #           password_resets POST   /password_resets(.:format)                password_resets#create
 #        new_password_reset GET    /password_resets/new(.:format)            password_resets#new
 #       edit_password_reset GET    /password_resets/:id/edit(.:format)       password_resets#edit
 #            password_reset PUT    /password_resets/:id(.:format)            password_resets#update
 #  new_account_confirmation GET    /account_confirmations/new(.:format)      account_confirmations#new
 # edit_account_confirmation GET    /account_confirmations/:id/edit(.:format) account_confirmations#edit
+#         signup_form_index POST   /signup_form(.:format)                    signup_form#create
+#           new_signup_form GET    /signup_form/new(.:format)                signup_form#new
 #                      help        /help(.:format)                           static_pages#help
 #                     about        /about(.:format)                          static_pages#about
 #                   contact        /contact(.:format)                        static_pages#contact
-#                    signup GET    /signup(.:format)                         users#new
-#                           POST   /signup(.:format)                         users#new
+#                    signup GET    /signup(.:format)                         signup_form#new
+#                           POST   /signup(.:format)                         signup_form#new
 #                    signin GET    /signin(.:format)                         sessions#new
 #                   signout DELETE /signout(.:format)                        sessions#destroy
