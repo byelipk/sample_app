@@ -4,7 +4,7 @@ class UserMailer < ActionMailer::Base
   def account_confirmation( user )
   	@user = user
     # Production URL
-  	#@url = "https://sheltered-reaches-8554.herokuapp.com/account_confirmations/#{@user.confirmation_token}/edit"
+  	# @url = "#{PROD_SERV}/account_confirmations/#{@user.confirmation_token}/edit"
 
   	# Dev URL 
   	@url = "http://localhost:3000/account_confirmations/#{@user.confirmation_token}/edit"
