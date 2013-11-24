@@ -10,10 +10,24 @@ describe "Authentication process when we" do
 
         describe "with invalid information" do
 
-          before { click_button "Sign in" }
+            context "from /signin" do
 
-          it { should have_selector('title', text: 'Sign in') }
-          it { should have_selector('div.notice', text: 'Invalid') }
+                before { click_button "Sign in" }
+
+                it { should have_selector('title', text: 'Sign in') }
+                it { should have_selector('div.notice', text: 'Invalid') }
+
+            end
+
+            context "from static_pages#home" do
+                before do 
+                    visit root_url
+                    click_button "Sign in"
+                end
+
+                it { should have_selector('title', text: 'Sign in') }
+                it { should have_selector('div.notice', text: 'Invalid') } 
+            end
         end
 
         describe "after visiting another page" do
@@ -28,23 +42,42 @@ describe "Authentication process when we" do
             let(:user) { FactoryGirl.create(:user) }
             
             context "as an activated user" do
+                let(:active_user) { set_user_to_active(user) }
                 
-                before do
-                    active_user = set_user_to_active(user)
-                    fill_in "email",    with: active_user.email.upcase
-                    fill_in "password", with: active_user.password
-                    click_button "Sign in"
-                end   
-                
-                it { should_not have_link("Sign in", href: signin_path) }
-                
-                it { should have_selector('title', text: user.person.full_name) } 
-                it { should have_link('Sign out', href: signout_path) }
-                
-                describe "followed by signout" do
-                    before { click_link "Sign out" }
-                    it { should have_link('Sign in') }
-                end            
+                describe "from /signin" do    
+                    before do                  
+                        fill_in "email",    with: active_user.email.upcase
+                        fill_in "password", with: active_user.password
+                        click_button "Sign in"
+                    end
+     
+                    it { should_not have_link("Sign in", href: signin_path) }              
+                    it { should have_selector('title', text: user.person.full_name) } 
+                    it { should have_link('Sign out', href: signout_path) }
+                                
+                    describe "followed by signout" do
+                        before { click_link "Sign out" }
+                        it { should have_link('Sign in') }
+                    end 
+                end  
+
+                describe "from static_pages#home" do
+                    before do 
+                        visit root_url
+                        fill_in "user_email",    with: active_user.email.upcase
+                        fill_in "user_password", with: active_user.password                        
+                        click_button "Sign in"
+                    end
+
+                    it { should_not have_link("Sign in", href: signin_path) }              
+                    it { should have_selector('title', text: user.person.full_name) } 
+                    it { should have_link('Sign out', href: signout_path) }
+                                
+                    describe "followed by signout" do
+                        before { click_link "Sign out" }
+                        it { should have_link('Sign in') }
+                    end                     
+                end       
             end
 
             context "as an unactivated user" do
@@ -57,9 +90,6 @@ describe "Authentication process when we" do
 
                 it { should_not have_selector('title', text: user.person.full_name) } 
                 it { should_not have_link('Sign out', href: signout_path) }
-
-                # it { should have_selector('title', text: "Account Activation") }
-                # it { should have_selector('h3', text: "Activate your account") }
             end
         end
     end

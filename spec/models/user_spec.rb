@@ -128,4 +128,16 @@ describe User do
     before { @user.save }
     its(:remember_token) { should_not be_blank }
   end
+
+  describe "confirmation token" do
+    before { @user.save }
+    its(:confirmation_token) { should_not be_blank }  
+  end
+
+  describe "default states" do
+    before { @user.save }
+    its(:admin) { should == false}
+    its(:active) { should == false}
+    its(:verified_email) { should == false}
+  end
 end
