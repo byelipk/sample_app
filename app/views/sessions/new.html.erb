@@ -1,19 +1,19 @@
 <% provide(:title, "Sign in") %>
-<section class="signin-signup-wrapper">
+<section class="static-wrapper">
 	<% flash.each do |key, value| %>
 		<%= content_tag(:div, value, 
 				id: "flash-notification",
 				class: "notice notice-#{key}") %>
 	<% end %>
 	<div class="form-header">		
-		<span class="sign-in-call-to-action">Sign in</span> 
-		<span class="link-to-sign-up"><%= link_to "Sign up", signup_path %></span>
+		<span class="call-to-action">Sign in</span> 
+		<span class="link-to"><%= link_to "Sign up", signup_path %></span>
 	</div>
-	<div class="sign-in-form-container">
+	<div class="static-form-container">
 	    <%= form_for(@user, url: {conroller: "sessions", action: "create"}) do |f| %>
 	        <%= render 'shared/error_messages', object: f.object %>
 	        <%= render 'fields', f: f %>
-	        <span class="link-to-password">
+	        <span class="link-to">
 	        	<%= link_to "Forgot password?", new_password_reset_path %>
 	        </span>
         	<%= render 'submit_button', f: f %>

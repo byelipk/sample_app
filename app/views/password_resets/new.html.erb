@@ -1,17 +1,20 @@
 <% provide(:title, 'Reset Password') %>
-<section class="container my-container">
-	<h3>Reset your password</h3>
-	<p>Enter your email below so we can send you a link to reset your password.</p>
-
-	<div class="row">
-		<div class="span4">
-			<%= form_tag password_resets_path, method: 'post' do %>	
-				<%= label_tag :email %>
-				<%= text_field_tag :email, params[:email] %>
-				<%= submit_tag "Reset password", class: "btn btn-primary" %>
-			<% end %>
-		</div>
+<section class="static-wrapper">
+	<div class="form-header">
+		<span class="call-to-action">
+			Reset your password
+		</span>
+	</div>
+	<div class="static-form-container">
+		<p class="link-to">Enter your email below so we can send you a link to reset your password.</p>
+		<%= form_tag password_resets_path, method: 'post', class: "reset_password" do %>	
+			<%= render 'password_resets/partials/fields' %>
+			<span class="link-to">
+				<p>New user? <%= link_to "Sign up!" , signup_path %></p>
+			</span>
+			<%= render 'password_resets/partials/submit_button' %>
+		<% end %>
 	</div>
 
-	<p>New user? <%= link_to "Join the conversation!" , signup_path %></p>
+	
 </section>

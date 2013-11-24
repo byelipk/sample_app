@@ -4,6 +4,9 @@
 
 /* Mixins and variables*/
 
+$button-color: #228B9B;
+$button-hover: #1D7886; 
+
 @mixin box-shadow-1 {
   -webkit-box-shadow: 1px 1px 2px rgb(216, 216, 216);
   -moz-box-shadow: 1px 1px 2px rgb(216, 216, 216);
@@ -16,9 +19,9 @@
 	-moz-border-radius: 5px;
 }
 
-/* Signin/Signup */
+/* Signin/Signup/Password Reset */
 
-.signin-signup-wrapper {
+.static-wrapper {
 	max-width: 500px;
 	min-width: 500px;
 	margin: 70px auto;
@@ -29,24 +32,19 @@
 	margin: 30px auto;
 }
 
-.sign-in-call-to-action, .sign-up-call-to-action {
-	font-size: 4em;
+.call-to-action {
+	font-size: 3.8em;
 	font-weight: 200;
 }
 
-.link-to-sign-up, .link-to-sign-in, .link-to-password {
+.link-to {
 	float: right;
-	font-size: 1.5em;
-	font-weight: 200;
-	margin-top: 10px;
-}
-
-.link-to-password {
 	font-size: 1.3em;
-	margin-top: 17px;
+	font-weight: 200;
+	margin-top: 15px;
 }
 
-.sign-in-form-container, .sign-up-form-container {
+.static-form-container {
 	margin: auto;
 	padding: 15px;
 	background: #F6F5ED;
@@ -58,14 +56,13 @@
 	}
 }
 
-
-.new_user {
+.new_user, .reset_password {
 	padding: 5px;
 	margin-bottom: 0px;
 	@include border-radius-1;
 }
 
-#user_email, #user_password, #user_first_name, 
+#email, #user_email, #user_password, #user_first_name, 
 #user_last_name, #user_password, #user_password_confirmation {
 	font-family: 'Open Sans', Helvetica Neue, sans-serif, helvetica;
 	background: none repeat scroll 0 0 #DCD7CE;
@@ -87,27 +84,14 @@ form label {
 
 /* Submit buttons */
 
-.submit-sign-up, .submit-sign-in {
+/* For styling the button's containing div element */
+.submit-button {
 	display: block;
+	width: 100%;
     text-align: center;
-    text-transform: uppercase;
-    background: none repeat scroll 0 0 #228B9B;
+    background: none repeat scroll 0 0 $button-color;
 	padding: 10px 0 15px;
 	@include box-shadow-1;	
-	&:hover {
-    	background: none repeat scroll 0 0 #1D7886;
-    	cursor: pointer;
-    	input[type="submit"] {
-    		background-color: inherit;
-    	}	
-    }
-    &:focus {
-    	outline: none;   	
-    }
-}
-
-.submit-sign-up, .submit-sign-in {
-	width: 100%;
 	input[type="submit"] {
 		margin-bottom: 0px;
 		&:focus {
@@ -118,13 +102,24 @@ form label {
 			cursor: progress;
 		}
 	}	
+	&:hover {
+    	background: none repeat scroll 0 0 $button-hover;
+    	cursor: pointer;
+    	input[type="submit"] {
+    		background-color: inherit;
+    	}	
+    }
+    &:focus {
+    	outline: none;   	
+    }
 }
 
-.submit-sign-in {
+.submit-share {
 	width: 60%;
 }
 
-.submit-button-sign-in, .submit-button-sign-up {
+/* For styling tha actual button */
+.submit-button-static {
 	font-family: 'Open Sans', Helvetica Neue, sans-serif, helvetica;
 	font-size: 1.7em;
     font-weight: 200;
