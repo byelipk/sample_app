@@ -4,7 +4,7 @@ class UserMailer < ActionMailer::Base
   def account_confirmation( user )
   	@user = user
     # Production URL
-  	# @url = "#{PROD_SERV}/account_confirmations/#{@user.confirmation_token}/edit"
+  	# @url = "https://#{PROD_SERV}/account_confirmations/#{@user.confirmation_token}/edit"
 
   	# Dev URL 
   	@url = "http://localhost:3000/account_confirmations/#{@user.confirmation_token}/edit"
@@ -14,7 +14,7 @@ class UserMailer < ActionMailer::Base
   def password_reset( user )
     @user = user 
     # Production URL
-    #@url = "https://sheltered-reaches-8554.herokuapp.com/password_resets/#{@user.password_reset_token}/edit"    
+    #@url = "https://#{PROD_SERV}/password_resets/#{@user.password_reset_token}/edit"    
     
     # Dev URL
     @url  = "http://localhost:3000/password_resets/#{@user.password_reset_token}/edit"
