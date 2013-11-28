@@ -1,0 +1,23 @@
+<p>
+	<%= f.text_field :title, 
+		placeholder: "What is this conversation about in one brief sentence?" %>
+</p>
+
+
+<div class="first_post" id="first_post">
+	<p>
+		<%= f.text_area :content, placeholder: "Make the first post!", class: "first" %>
+	</p> 
+	<div class="critical_thinker" id="critical_thinker">
+		<span>Question Answer Opinion</span>		
+	</div>
+</div>
+
+
+<!-- Invite friends, family, and colleagues to participate!
+<div>
+	<p>
+		<%#= f.text_area :content, placeholder: "Speak!" %>
+	</p> 
+</div>
+-->

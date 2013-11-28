@@ -1,0 +1,19 @@
+<div>
+	<div>
+		<h3><%= @conversation.title %></h3>
+	</div>
+</div>
+
+
+<% @conversation.posts.each do |post| %>
+	<div>
+		<div>
+			<div>
+				<%= post.author.first_name %> said:
+				<p>
+					<%= post.content %>
+				</p>
+			<div>
+		</div>
+	</div>
+<% end %>

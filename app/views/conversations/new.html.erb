@@ -1,0 +1,13 @@
+<% provide(:title, 'Start a conversation!') %>
+<section class="static-wrapper">
+	<div class="form-header">
+		<span class="call-to-action-dynamic">
+			Start a new conversation
+		</span>
+	</div>
+	<%= form_for @conversation, url: conversations_path do |f| %>
+		<%= render 'shared/error_messages', object: f.object %>
+		<%= render 'conversations/partials/fields', f: f %>
+		<%= render 'conversations/partials/submit_button', f: f %>
+	<% end %>
+</section>
