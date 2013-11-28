@@ -49,7 +49,7 @@ class SignupForm
 			false
 		end
 	end
-
+	
 	def verify_unique_email
 		if User.exists? email: user.email
 			errors.add :email, "has already been taken"
