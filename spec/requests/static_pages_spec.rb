@@ -44,18 +44,6 @@ describe "StaticPages" do
 	    click_link "Help"
 	    page.should have_selector 'title', text: full_title('Help')
 	    click_link "Contact"
-	    page.should have_selector 'title', text: full_title('Contact')
-	    # click_link "Privacy"
-	    # page.should have_selector 'title', text: full_title('Privacy')
-	    # click_link "Blog"
-	    # page.should have_selector 'title', text: full_title('Blog')
-	    # click_link "Jobs"
-	    # page.should have_selector 'title', text: full_title('Jobs')
-	    # click_link "Dev"
-	    # page.should have_selector 'title', text: full_title('Development') 
-	    # click_link "Terms"
-	    # page.should have_selector 'title', text: full_title('Terms & Conditions')
-	    # click_link "News"
-	    # page.should have_selector 'title', text: full_title('News')               
+	    page.should have_selector 'title', text: full_title('Contact')              
 	end	
 end

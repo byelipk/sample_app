@@ -32,9 +32,13 @@ $button-hover: #1D7886;
 	margin: 30px auto;
 }
 
-.call-to-action {
+.call-to-action, .call-to-action-dynamic {
 	font-size: 3.8em;
 	font-weight: 200;
+}
+
+.call-to-action-dynamic {
+	font-size: 3em;
 }
 
 .link-to {
@@ -62,15 +66,19 @@ $button-hover: #1D7886;
 	@include border-radius-1;
 }
 
-#email, #user_email, #user_password, #user_first_name, 
+#conversation_title, #email, #user_email, #user_password, #user_first_name, 
 #user_last_name, #user_password, #user_password_confirmation {
 	font-family: 'Open Sans', Helvetica Neue, sans-serif, helvetica;
 	background: none repeat scroll 0 0 #DCD7CE;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.35) inset, 0 1px 0 #FFFFFF;
 	color: #565658;
-	font-size: 1.2em;
+	font-size: 1.1em;
 	font-weight: 400;
 	padding: 7px;
+}
+
+#conversation_title {
+	background: none repeat scroll 0 0 #FFFFFF;
 }
 
 form label {

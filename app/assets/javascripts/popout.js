@@ -10,8 +10,7 @@ $('.popout-header').click(function() {
 });
 
 // Carosel slide effect
-$('.carousel-actions > div').click(function ( event ) {
-	event.stopPropagation();
+$('.carousel-actions > div').click(function ( ) {
 	
 	myParent   = $(this).parent();
     myCousin   = $('.carousel-' + $(this).attr('id').split('-')[1] + '');
@@ -29,8 +28,7 @@ $('.carousel-actions > div').click(function ( event ) {
 	
 });
 
-$('.popout-carousel > div p').click( function( event ) {
-	event.stopPropagation();
+$('.popout-carousel > div p').click( function( ) {
 
 	if ( myCousin.hasClass( "carousel-left" ) ) {
 		myCousin.animate( { 'right': '' + myCousinOriginalRight + '' }, 500 );

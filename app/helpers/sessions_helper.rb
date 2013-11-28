@@ -34,6 +34,11 @@ module SessionsHelper
     current_user == user
   end
 
+  def current_person
+    @current_person = current_user.person if current_user
+    
+  end  
+
   def sign_out
   	self.current_user = nil
   	cookies.delete(:remember_token)

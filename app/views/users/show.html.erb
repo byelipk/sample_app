@@ -2,10 +2,8 @@
 <div class="row">
 	<aside class="span4">
 		<section>
-			<h1>
-				<%= gravatar_for(@user) %>
-				<%= @user.person.full_name %>
-			</h1>
+			<%= gravatar_for(@user) %>
+			<%= @user.profile.full_name %>
 		</section>
 		<section>
 			<!-- Placeholder -->
@@ -17,4 +15,3 @@
 
 	</section>
 </div>
-

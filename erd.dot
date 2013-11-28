@@ -11,16 +11,47 @@ fontname = "Arial Bold";
 node[ shape  =  "Mrecord" , fontsize  =  "10" , fontname  =  "Arial" , margin  =  "0.07,0.05" , penwidth  =  "1.0"];
 edge[ fontname  =  "Arial" , fontsize  =  "7" , dir  =  "both" , arrowsize  =  "0.9" , penwidth  =  "1.0" , labelangle  =  "32" , labeldistance  =  "1.8"];
 label = "SampleApp domain model\n\n";
-m_Micropost [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
-  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Micropost</font></td></tr>
+m_Conversation [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Conversation</font></td></tr>
 </table>
 |
 <table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
-  <tr><td align="left" width="130" port="content">content <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="title">title <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+</table>
+>];
+m_Participation [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Participation</font></td></tr>
 </table>
 >];
 m_Person [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
   <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Person</font></td></tr>
+</table>
+>];
+m_Post [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Post</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="content">content <font face="Arial Italic" color="grey60">text ∗</font></td></tr>
+  <tr><td align="left" width="130" port="previous_post">previous_post <font face="Arial Italic" color="grey60">integer</font></td></tr>
+</table>
+>];
+m_PostAction [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">PostAction</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="person_id">person_id <font face="Arial Italic" color="grey60">integer ∗</font></td></tr>
+  <tr><td align="left" width="130" port="post_id">post_id <font face="Arial Italic" color="grey60">integer ∗</font></td></tr>
+  <tr><td align="left" width="130" port="post_type_id">post_type_id <font face="Arial Italic" color="grey60">integer ∗</font></td></tr>
+</table>
+>];
+m_PostType [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">PostType</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="name_key">name_key <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
 </table>
 >];
 m_Profile [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
@@ -35,8 +66,8 @@ m_Profile [label = <<table border="0" align="center" cellspacing="0.5" cellpaddi
   <tr><td align="left" width="130" port="searchable">searchable <font face="Arial Italic" color="grey60">boolean</font></td></tr>
 </table>
 >];
-m_Relationship [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
-  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Relationship</font></td></tr>
+m_Subscription [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Subscription</font></td></tr>
 </table>
 >];
 m_User [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
@@ -56,12 +87,16 @@ m_User [label = <<table border="0" align="center" cellspacing="0.5" cellpadding=
   <tr><td align="left" width="130" port="verified_email">verified_email <font face="Arial Italic" color="grey60">boolean</font></td></tr>
 </table>
 >];
-  m_User -> m_Micropost [arrowhead = "normal", arrowtail = "none", weight = "2"];
-  m_User -> m_Relationship [arrowhead = "normal", arrowtail = "none", weight = "2"];
-  m_User -> m_Relationship [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Person -> m_Conversation [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Conversation -> m_Participation [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Conversation -> m_Person [style = "dotted", arrowhead = "normal", arrowtail = "none", weight = "1", constraint = "false"];
+  m_Conversation -> m_Post [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Conversation -> m_Subscription [arrowhead = "normal", arrowtail = "none", weight = "2"];
   m_User -> m_Person [arrowhead = "none", arrowtail = "none", weight = "2"];
   m_User -> m_Profile [style = "dotted", arrowhead = "none", arrowtail = "none", weight = "1", constraint = "false"];
-  m_User -> m_User [style = "dotted", arrowhead = "normal", arrowtail = "none", weight = "1", constraint = "false"];
-  m_User -> m_User [style = "dotted", arrowhead = "normal", arrowtail = "none", weight = "1", constraint = "false"];
+  m_Person -> m_Participation [arrowhead = "normal", arrowtail = "none", weight = "2"];
   m_Person -> m_Profile [arrowhead = "none", arrowtail = "none", weight = "2"];
+  m_Person -> m_Conversation [style = "dotted", arrowhead = "normal", arrowtail = "none", weight = "1", constraint = "false"];
+  m_Person -> m_Post [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Person -> m_Subscription [arrowhead = "normal", arrowtail = "none", weight = "2"];
 }

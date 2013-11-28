@@ -11,9 +11,15 @@
 class Person < ActiveRecord::Base
 
 	has_one :profile, :dependent => :destroy
-
 	delegate :first_name, :last_name, :full_name, to: :profile
-	accepts_nested_attributes_for :profile
 
 	belongs_to :user
+
+	# CONVERSATION STARTER
+	has_many :conversations 	# Person starts many conversations
+	has_many :posts
+
+	def start_conversation(conversation_params={})
+		self.conversations.build(conversation_params)
+	end
 end

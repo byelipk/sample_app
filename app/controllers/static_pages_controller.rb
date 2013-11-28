@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
 
   def home 
   	unless signed_in?
-      @static_page_forms = StaticPageForms.new
+      @static_page_form = StaticPageForm.new
   	end 
   end
 

@@ -6,6 +6,8 @@ SampleApp::Application.routes.draw do
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :account_confirmations, only: [:new, :edit]
   resources :signup_form, only: [:new, :create]
+  resources :conversations
+  resources :posts
   
   match '/help',      to: 'static_pages#help'
   match '/about',     to: 'static_pages#about'
@@ -75,7 +77,7 @@ SampleApp::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
 end
 #== Route Map
-# Generated on 24 Nov 2013 10:49
+# Generated on 25 Nov 2013 12:25
 #
 #                     users GET    /users(.:format)                          users#index
 #                           POST   /users(.:format)                          users#create
@@ -95,6 +97,20 @@ end
 # edit_account_confirmation GET    /account_confirmations/:id/edit(.:format) account_confirmations#edit
 #         signup_form_index POST   /signup_form(.:format)                    signup_form#create
 #           new_signup_form GET    /signup_form/new(.:format)                signup_form#new
+#             conversations GET    /conversations(.:format)                  conversations#index
+#                           POST   /conversations(.:format)                  conversations#create
+#          new_conversation GET    /conversations/new(.:format)              conversations#new
+#         edit_conversation GET    /conversations/:id/edit(.:format)         conversations#edit
+#              conversation GET    /conversations/:id(.:format)              conversations#show
+#                           PUT    /conversations/:id(.:format)              conversations#update
+#                           DELETE /conversations/:id(.:format)              conversations#destroy
+#                     posts GET    /posts(.:format)                          posts#index
+#                           POST   /posts(.:format)                          posts#create
+#                  new_post GET    /posts/new(.:format)                      posts#new
+#                 edit_post GET    /posts/:id/edit(.:format)                 posts#edit
+#                      post GET    /posts/:id(.:format)                      posts#show
+#                           PUT    /posts/:id(.:format)                      posts#update
+#                           DELETE /posts/:id(.:format)                      posts#destroy
 #                      help        /help(.:format)                           static_pages#help
 #                     about        /about(.:format)                          static_pages#about
 #                   contact        /contact(.:format)                        static_pages#contact

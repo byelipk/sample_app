@@ -9,7 +9,6 @@ describe "UserPages" do
 	    before { visit signup_path }
 
 	    it { should have_selector('span',    text: 'Sign up') }
-	    it { should have_selector('section.signin-signup-wrapper') }
 		it { should have_selector('title', text: full_title('Create your Account') ) }
 	end
 	
