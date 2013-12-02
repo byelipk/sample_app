@@ -8,15 +8,21 @@ SampleApp::Application.routes.draw do
   resources :signup_form, only: [:new, :create]
   resources :conversations
   resources :posts
+  resources :profiles
   
+  # Static page routes
   match '/help',      to: 'static_pages#help'
   match '/about',     to: 'static_pages#about'
   match '/contact',   to: 'static_pages#contact'
   
-  match '/signup',    to: 'users#new',         via: 'get'
-  match '/signup',    to: 'users#new',         via: 'post'
+  # User authentication routes
+  match '/signup',    to: 'users#new',         via: 'get'    # Signup page
+  match '/signup',    to: 'users#new',         via: 'post'   # Homepage signup form
   match '/signin',    to: 'sessions#new',      via: 'get'
   match '/signout',   to: 'sessions#destroy',  via: 'delete'
+
+  # Conversation routes
+  match '/new_conversation', to: 'conversations#new', via: 'get'
 
 
   # The priority is based upon order of creation:
