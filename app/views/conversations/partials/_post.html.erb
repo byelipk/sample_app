@@ -1,0 +1,42 @@
+<% persist_conversation(post) %>
+
+<article class="row post-row" id="post-<%= post.id %>">
+	<div class="span10">
+		<div class="post-meta span1">
+			<figure class="post-meta-contents">
+				<a href="#"><%= gravatar_for(post.author.user, size: 48) %></a>
+				<figcaption><%= post.author.full_name %></figcaption>
+			</figure>
+		</div>
+		<div class="post-body span7">
+			<p><%= post.content %></p>
+		</div>
+		<div class="post-info span1">
+			<a href="#">
+				<span><%= time_ago_in_words(post.created_at) %></span>
+			</a>
+		</div>	
+		<div class="post-menu">
+			<nav>
+				<%= form_for(
+						current_person.posts.build(
+							conversation_id: @conversation.id, 
+							prev_post_id: @conversation.most_recent_post(post) ), 
+						url: new_conversation_post_path(@conversation), 
+						html: {method: 'get'}, 
+						remote: true 
+					) do |f| %>
+
+					<%= f.hidden_field :prev_post_id %>
+					<%= f.submit "Reply", class: "respond" %>
+					
+				<% end %>
+
+				<button class="vote">Vote</button>
+				<button class="link">Link</button>
+				<button class="analyze">Analyze</button>						
+			</nav>			
+		</div>	
+		<%#= presenter.actions %>						
+	</div>
+</article>

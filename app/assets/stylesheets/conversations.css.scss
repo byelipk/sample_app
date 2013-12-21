@@ -10,9 +10,75 @@
 	resize: none;
 }
 
-.critical_thinker {
-	display: none;
+#new_post {	
+	margin-left: 30px;
+}
+
+.post-row {
+	border-top: 1px solid #ddd;
+}
+
+.post-meta {
+	margin-bottom: 10px;
+	width: 92px;
+	padding-top: 30px;
+	float: left;
+	position: relative;	
+}
+
+.post-meta-contents {
+	p {
+		text-align: center;
+	}
+	a {
+		img {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+}
+
+.post-body {
+	float: left;
 	position: relative;
-	bottom: 40px;
-	left: 10px;	
+	width: 720px;
+	padding: 10px 10px 15px 20px;
+	p {
+		margin: 10px 0;
+	}	
+}
+
+.post-info {
+	margin-top: 22px;
+	float: right;
+	font-size: 12px;
+	a {
+		color: #aaa;
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+
+.post-menu {
+	clear: both;
+
+}
+
+.convo-title {
+	padding: 14px 0 8px 0;
+	margin-bottom: 20px;
+}
+
+.respond, .analyze, .link, .vote {
+	float: right;
+	border: none;
+	margin-right: 0;
+	color: #ffffff;
+	background: #228B9B;
+	padding: 8px 20px;
+	margin-left: 10px;	
+	border-radius: 2px;
+	outline: none;
 }

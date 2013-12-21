@@ -1,0 +1,20 @@
+<nav>
+
+	<%= form_for(
+			current_person.posts.build(
+				conversation_id: @conversation.id, 
+				prev_post_id: object ), 
+			url: new_conversation_post_path(@conversation), 
+			html: {method: 'get'}, 
+			remote: true 
+		) do |f| %>
+
+		<%= f.hidden_field :prev_post_id %>
+		<%= f.submit "Reply", class: "respond" %>
+		
+	<% end %>
+
+	<button class="vote">Vote</button>
+	<button class="link">Link</button>
+	<button class="analyze">Analyze</button>						
+</nav>

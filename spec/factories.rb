@@ -13,7 +13,7 @@ FactoryGirl.define do
 	end  
 
 	factory :profile do
-	  	first_name     "Marko"
-	  	last_name      "Polo"
+	  	first_name     "MaRKo"
+	  	last_name      "PoLO"
 	end
 end

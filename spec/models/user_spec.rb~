@@ -42,7 +42,7 @@ describe User do
 
   describe "validation when email is not present" do
   	before { user.email = "" }	
-  	it { should_not be_valid }
+  	it { should have(1).error_on(:email) }
   end
 
   describe "validation when email format is invalid" do

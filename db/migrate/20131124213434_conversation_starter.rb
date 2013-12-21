@@ -3,6 +3,7 @@ class ConversationStarter < ActiveRecord::Migration
   	create_table :conversations do |t|
   		t.string  	 :title, null: false
   		t.integer 	 :person_id, null: false         # author
+      t.integer    :first_post_id, null: true
   		t.timestamps
   	end
 
@@ -10,15 +11,15 @@ class ConversationStarter < ActiveRecord::Migration
 
   	create_table :posts do |t|
   		t.integer 	  :person_id, null: false        
-  		t.integer 	  :conversation_id, null: false  # parent conversation
-      t.integer     :previous_post                 # id of previous post     
+  		t.integer 	  :conversation_id, null: false            # parent conversation
+      t.integer     :prev_post_id, null: true         # id of previous post     
   		t.text		    :content, null: false
   		t.timestamps
   	end
 
     add_index :posts, :person_id
     add_index :posts, :conversation_id
-    add_index :posts, :previous_post
+    add_index :posts, :prev_post_id
 
 
   	create_table :post_actions do |t|              # response type lookup table

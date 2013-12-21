@@ -6,6 +6,7 @@
 /* Welcome colorpslash */
 
 $base: #8E4C9B;
+$header: #2c3747;
 
 .welcome-wrapper {
 	background-color: $base;
@@ -28,7 +29,7 @@ $base: #8E4C9B;
 /* Header */
 
 .kso_navbar {
-	background-color: #2c3747;
+	background-color: $header;
 	-webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.3);
 	-moz-box-shadow: 0 2px 3px rgba(0,0,0,0.3);
 	box-shadow: 0 2px 3px rgba(0,0,0,0.3);

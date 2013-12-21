@@ -46,4 +46,9 @@ SampleApp::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # To prevent unwanted, multiple AJAX requests. Note: 
+  # It may be possible to achieve the same result by setting
+  # config.assets.debug = false
+  config.serve_static_assets = false 
 end

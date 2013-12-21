@@ -8,6 +8,5 @@
 	<%= form_for @conversation, url: conversations_path do |f| %>
 		<%= render 'shared/error_messages', object: f.object %>
 		<%= render 'conversations/partials/fields', f: f %>
-		<%= render 'conversations/partials/submit_button', f: f %>
 	<% end %>
 </section>

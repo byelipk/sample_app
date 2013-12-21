@@ -1,5 +1,4 @@
 class AccountConfirmationsController < ApplicationController
-
 	def new
 	    if session[:email]
 	    	@email = session[:email]

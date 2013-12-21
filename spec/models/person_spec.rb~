@@ -65,7 +65,9 @@ describe Person do
 
   context "#posts" do
   	it "returns an array" do
-      expect(subject.posts).to be_an_instance_of(Array)
+      posts = mock(Post)
+      posts.should_receive(:all).and_return(Array.new)
+      expect(subject.posts.all).to be_an_instance_of(Array)
   	end
   end
 end

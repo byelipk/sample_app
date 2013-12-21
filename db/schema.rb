@@ -14,10 +14,11 @@
 ActiveRecord::Schema.define(:version => 20131124213434) do
 
   create_table "conversations", :force => true do |t|
-    t.string   "title",      :null => false
-    t.integer  "person_id",  :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "title",         :null => false
+    t.integer  "person_id",     :null => false
+    t.integer  "first_post_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   add_index "conversations", ["person_id"], :name => "index_conversations_on_person_id"
@@ -62,7 +63,7 @@ ActiveRecord::Schema.define(:version => 20131124213434) do
   create_table "posts", :force => true do |t|
     t.integer  "person_id",       :null => false
     t.integer  "conversation_id", :null => false
-    t.integer  "previous_post"
+    t.integer  "prev_post_id"
     t.text     "content",         :null => false
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
@@ -70,7 +71,7 @@ ActiveRecord::Schema.define(:version => 20131124213434) do
 
   add_index "posts", ["conversation_id"], :name => "index_posts_on_conversation_id"
   add_index "posts", ["person_id"], :name => "index_posts_on_person_id"
-  add_index "posts", ["previous_post"], :name => "index_posts_on_previous_post"
+  add_index "posts", ["prev_post_id"], :name => "index_posts_on_prev_post_id"
 
   create_table "profiles", :force => true do |t|
     t.string   "first_name", :limit => 127

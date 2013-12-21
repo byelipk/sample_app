@@ -1,19 +1,11 @@
-<div>
-	<div>
-		<h3><%= @conversation.title %></h3>
-	</div>
-</div>
+<%= render 'conversations/partials/title' %>
 
+<section class="responses" id="responses">
+	<% @conversation.posts.each do |post| %>
+		<% present post do |presenter| %>
+			<%= render 'conversations/partials/post', post: post, presenter: presenter %>
+		<% end %>
+	<% end %>
+</section>
 
-<% @conversation.posts.each do |post| %>
-	<div>
-		<div>
-			<div>
-				<%= post.author.first_name %> said:
-				<p>
-					<%= post.content %>
-				</p>
-			<div>
-		</div>
-	</div>
-<% end %>
+<div id="reply_post"></div> 

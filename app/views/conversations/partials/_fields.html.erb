@@ -8,16 +8,9 @@
 	<p>
 		<%= f.text_area :content, placeholder: "Make the first post!", class: "first" %>
 	</p> 
-	<div class="critical_thinker" id="critical_thinker">
-		<span>Question Answer Opinion</span>		
-	</div>
 </div>
 
-
-<!-- Invite friends, family, and colleagues to participate!
-<div>
-	<p>
-		<%#= f.text_area :content, placeholder: "Speak!" %>
-	</p> 
+<div class="submit-button submit-share">
+	<%= f.submit "Start conversation!", class: "submit-button-static",
+			'data-disable-with' => "Starting conversation..." %>
 </div>
--->

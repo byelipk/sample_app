@@ -15,3 +15,10 @@ def set_user_to_active(user)
 	user.save
 	user
 end
+
+def sign_in(user)
+	visit signin_path                  
+    fill_in "email",    with: user.email.upcase
+    fill_in "password", with: user.password
+    click_button "Sign in"
+end

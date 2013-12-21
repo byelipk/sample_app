@@ -12,9 +12,9 @@ class ConversationsController < ApplicationController
 	end
 
 	def create
-		@c = ConversationForm.new(current_person)
-		if @c.submit(convo_params, post_params)
-			redirect_to conversation_path(@c.conversation)
+		@conversation = ConversationForm.new(current_person)
+		if @conversation.submit(convo_params, post_params)
+			redirect_to conversation_path(@conversation.conversation)
 		else
 			render 'new'
 		end
